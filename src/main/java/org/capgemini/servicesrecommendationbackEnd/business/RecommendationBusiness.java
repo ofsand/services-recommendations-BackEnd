@@ -11,6 +11,7 @@ import org.capgemini.servicesrecommendationbackEnd.repository.TradespersonReposi
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class RecommendationBusiness implements EntityBusiness<Recommendation, Long> {
@@ -90,7 +91,7 @@ public class RecommendationBusiness implements EntityBusiness<Recommendation, Lo
         Service service = serviceRepository.getById(serviceId);
 
         List<Recommendation> listRecommendations ;
-        listRecommendations = service.getRecommendations();
+        listRecommendations = service.getRecommendations().stream().filter(Recommendation::isApproved).collect(Collectors.toList());
         return listRecommendations;
     }
 
@@ -98,7 +99,7 @@ public class RecommendationBusiness implements EntityBusiness<Recommendation, Lo
         Tradesperson tradesperson = tradespersonRepository.getById(tradespersonId);
 
         List<Recommendation> listRecommendations ;
-        listRecommendations = tradesperson.getRecommendations();
+        listRecommendations = tradesperson.getRecommendations().stream().filter(Recommendation::isApproved).collect(Collectors.toList());
         return listRecommendations;
     }
 
@@ -107,8 +108,4 @@ public class RecommendationBusiness implements EntityBusiness<Recommendation, Lo
     public void delete(Long id) {
         recommendationRepository.deleteById(id);
     }
-
-
-
-
 }
