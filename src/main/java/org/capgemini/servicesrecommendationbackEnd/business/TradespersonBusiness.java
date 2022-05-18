@@ -2,51 +2,53 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 
 import org.capgemini.servicesrecommendationbackEnd.models.Category;
 import org.capgemini.servicesrecommendationbackEnd.models.Service;
+import org.capgemini.servicesrecommendationbackEnd.models.Tradesperson;
 import org.capgemini.servicesrecommendationbackEnd.repository.CategoryRepository;
 import org.capgemini.servicesrecommendationbackEnd.repository.ServiceRepository;
+import org.capgemini.servicesrecommendationbackEnd.repository.TradespersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class ServiceBusiness implements EntityBusiness<Service, Long> {
+public class TradespersonBusiness implements EntityBusiness<Tradesperson, Long> {
 
-    @Autowired
-    public ServiceRepository serviceRepository;
 
     @Autowired
     public CategoryRepository categoryRepository;
 
+    @Autowired
+    public TradespersonRepository tradespersonRepository;
+
     @Override
-    public List<Service> getAll() {
+    public List<Tradesperson> getAll() {
         return null;
     }
 
     @Override
-    public Service get(Long id) {
-        return serviceRepository.getById(id);
+    public Tradesperson get(Long id) {
+        return tradespersonRepository.getById(id);
     }
 
     @Override
-    public void add(Service objet) {
+    public void add(Tradesperson objet) {
 
     }
 
-    public void add(Long categoryId, Service service) {
+
+    public void add(Long categoryId, Tradesperson objet) {
         Category category = categoryRepository.getById(categoryId);
-        service.setCategory(category);
-        serviceRepository.save(service);
+        objet.setCategory(category);
+        tradespersonRepository.save(objet);
     }
 
-
     @Override
-    public void update(Service service) {
-        serviceRepository.save(service);
+    public void update(Tradesperson object) {
+        tradespersonRepository.save(object);
     }
 
     @Override
     public void delete(Long id) {
-        serviceRepository.deleteById(id);
+        tradespersonRepository.deleteById(id);
     }
 }
