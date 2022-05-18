@@ -1,7 +1,10 @@
 package org.capgemini.servicesrecommendationbackEnd.business;
 
+import org.capgemini.servicesrecommendationbackEnd.models.Service;
+
 import java.util.List;
 
+// @Service
 public class ServiceBusiness implements EntityBusiness<Service, Long> {
 
     @Override
