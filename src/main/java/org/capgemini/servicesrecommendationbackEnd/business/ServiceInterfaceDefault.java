@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 
 import java.util.List;
 
-public class ServiceDefault implements Service{
+public class ServiceInterfaceDefault implements ServiceBusiness {
     @Override
     public List<Service> services() {
         return null;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class TradesPersonServiceDefault implements TradesPersonService{
+public class TradesPersonServiceDefault implements TradesPersonBusiness {
 
     @Autowired
     public TradesPersonRepository tradesPersonRepository;

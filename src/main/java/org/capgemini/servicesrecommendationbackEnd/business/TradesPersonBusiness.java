@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 
 import java.util.List;
 
-public interface TradesPersonService {
+public interface TradesPersonBusiness {
     public List<TradesPerson> tradesPersons();
     public void add(TradesPerson tradesPerson);
     public TradesPerson get(Long id);
