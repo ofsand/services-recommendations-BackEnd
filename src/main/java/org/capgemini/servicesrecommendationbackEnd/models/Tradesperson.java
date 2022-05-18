@@ -22,4 +22,5 @@ public class Tradesperson {
     private Category category;
     @OneToMany(mappedBy = "tradesperson")
     private List<Recommendation> recommendations;
+
 }
