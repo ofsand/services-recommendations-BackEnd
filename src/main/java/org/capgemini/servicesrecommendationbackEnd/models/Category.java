@@ -21,8 +21,8 @@ public class Category {
     @ManyToOne
     @JoinColumn(name="id_user")
     private User user;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Service> services;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Tradesperson> tradesPersons;
 }
