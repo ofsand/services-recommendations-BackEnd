@@ -20,11 +20,11 @@ public class ExceptionAdvicer {
     @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ApiExceptionError> handleNotFoundException(BusinessException exception, HttpServletRequest request){
-        ApiExceptionError error=new ApiExceptionError(exception.errorsMessage.getHttpStatus().value()
-                ,exception.errorsMessage.getMessage()
+        ApiExceptionError error=new ApiExceptionError(exception.getErrorsMessage().getHttpStatus().value()
+                ,exception.getErrorsMessage().getMessage()
                 ,request.getServletPath());
         logger.log(Level.SEVERE,"no such element exception "+exception.getMessage(),exception);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        return ResponseEntity.status(exception.getErrorsMessage().getHttpStatus()).body(error);
     }
 
 
