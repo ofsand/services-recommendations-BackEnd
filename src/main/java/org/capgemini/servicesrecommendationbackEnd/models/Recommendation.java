@@ -22,9 +22,6 @@ public class Recommendation {
     @JoinColumn(name="id_user", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name="id_tradesperson")
-    private Tradesperson tradesperson;
-    @ManyToOne
-    @JoinColumn(name="id_service")
-    private Service service;
+    @JoinColumn(name="id_recommendation_service")
+    private ServiceTradesPerson recommendationService;
 }

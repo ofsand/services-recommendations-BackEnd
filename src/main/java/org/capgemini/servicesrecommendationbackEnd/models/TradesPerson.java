@@ -1,19 +1,19 @@
 package org.capgemini.servicesrecommendationbackEnd.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Table
 @Data
-public class Service extends ServiceTradesPerson {
+public class TradesPerson extends ServiceTradesPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_service")
     private Long id;
-    private String location;
-
+    private String firstName;
+    private String lastName;
+    private String domain;
+    private String speciality;
+    private String address;
 }

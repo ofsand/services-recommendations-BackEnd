@@ -22,7 +22,5 @@ public class Category {
     @JoinColumn(name="id_user")
     private User user;
     @OneToMany(mappedBy = "category")
-    private List<Service> services;
-    @OneToMany(mappedBy = "category")
-    private List<Tradesperson> tradesPersons;
+    private List<ServiceTradesPerson> recommendationServices;
 }

@@ -7,20 +7,22 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tradesperson {
+@Data
+@Entity
+@Table
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class ServiceTradesPerson {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-    private String username;
+    private String title;
+    private String email;
+    private String phoneNumber;
     @ManyToOne
     @JoinColumn(name="id_category")
     private Category category;
-    @OneToMany(mappedBy = "tradesperson")
+    @OneToMany(mappedBy = "recommendationService")
     private List<Recommendation> recommendations;
-
 }
