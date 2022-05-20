@@ -27,10 +27,10 @@ public class ServiceBusinessDefault implements ServiceBusiness {
 
 
     @Override
-    public void add(Long categoryId, Service service) {
+    public Service addService(Long categoryId, Service service) {
         Category category = categoryRepository.getById(categoryId);
         service.setCategory(category);
-        serviceRepository.save(service);
+        return serviceRepository.save(service);
     }
 
     @Override

@@ -18,6 +18,12 @@ public class Category {
     @Column(name = "id_category")
     private Long idCategory;
     private String name;
+
+    public Category(Long idCategory, String name) {
+        this.idCategory = idCategory;
+        this.name = name;
+    }
+
     @ManyToOne
     @JoinColumn(name="id_user")
     private User user;

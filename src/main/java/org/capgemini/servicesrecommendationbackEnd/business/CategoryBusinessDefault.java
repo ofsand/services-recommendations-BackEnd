@@ -9,26 +9,29 @@ import java.util.List;
 public class CategoryBusinessDefault implements CategoryBusiness {
 
     @Autowired
-    public CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
+    public  CategoryBusinessDefault (CategoryRepository categoryRepository){
+        this.categoryRepository= categoryRepository;
+    }
     @Override
     public List<Category> getAll() {
         return categoryRepository.findAll();
     }
 
     @Override
-    public Category get(Long id) {
+    public Category getOne(Long id) {
         return categoryRepository.getById(id);
     }
 
     @Override
-    public void add(Category category) {
-        categoryRepository.save(category);
+    public Category add(Category category) {
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void update(Category category) {
-        categoryRepository.save(category);
+    public Category update(Category category) {
+        return categoryRepository.save(category);
     }
 
     @Override
