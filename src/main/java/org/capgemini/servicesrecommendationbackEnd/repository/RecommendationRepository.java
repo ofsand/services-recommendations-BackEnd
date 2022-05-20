@@ -16,5 +16,4 @@ public interface RecommendationRepository extends JpaRepository<Recommendation, 
     @Query("select r from Recommendation r where r.tradesperson.id = :tradespersonId and isApproved = true")
     public List<Recommendation> getRecommendationsByTradesperson(@Param("tradespersonId") Long tradespersonId);
     */
-
 }
