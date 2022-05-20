@@ -3,7 +3,9 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.repository.RecommendationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminBusinessDefault implements AdminBusiness{
     @Autowired
     public RecommendationRepository recommendationRepository;

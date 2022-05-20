@@ -5,9 +5,11 @@ import org.capgemini.servicesrecommendationbackEnd.models.Tradesperson;
 import org.capgemini.servicesrecommendationbackEnd.repository.CategoryRepository;
 import org.capgemini.servicesrecommendationbackEnd.repository.TradespersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TradespersonBusinessDefault implements TradespersonBusiness {
 
     @Autowired
