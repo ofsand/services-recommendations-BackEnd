@@ -3,6 +3,7 @@ package org.capgemini.servicesrecommendationbackEnd.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,6 @@ public abstract class ServiceTradesPerson {
     @ManyToOne
     @JoinColumn(name="id_category")
     private Category category;
-    @OneToMany(mappedBy = "recommendationService")
+    @OneToMany(mappedBy = "serviceTradesPerson")
     private List<Recommendation> recommendations;
 }

@@ -23,5 +23,5 @@ public class Recommendation {
     private User user;
     @ManyToOne
     @JoinColumn(name="id_recommendation_service")
-    private ServiceTradesPerson recommendationService;
+    private ServiceTradesPerson serviceTradesPerson;
 }
