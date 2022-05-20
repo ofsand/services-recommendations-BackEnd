@@ -1,37 +1,46 @@
 package org.capgemini.servicesrecommendationbackEnd.business;
 
+import lombok.RequiredArgsConstructor;
+import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
+import org.capgemini.servicesrecommendationbackEnd.mapper.CategoryMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Category;
 import org.capgemini.servicesrecommendationbackEnd.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class CategoryBusinessDefault implements CategoryBusiness {
 
-    @Autowired
     private final CategoryRepository categoryRepository;
-
-    public  CategoryBusinessDefault (CategoryRepository categoryRepository){
-        this.categoryRepository= categoryRepository;
-    }
-    @Override
-    public List<Category> getAll() {
-        return categoryRepository.findAll();
-    }
+    private final CategoryMapper categoryMapper;
 
     @Override
-    public Category getOne(Long id) {
-        return categoryRepository.getById(id);
+    public List<CategoryDto> getAll() {
+        return
+            categoryRepository
+                .findAll()
+                .stream()
+                .map(categoryMapper::categoryToCategoryDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Category add(Category category) {
-        return categoryRepository.save(category);
+    public CategoryDto get(Long id) {
+        return categoryMapper.categoryToCategoryDto(categoryRepository.getById(id));
     }
 
     @Override
-    public Category update(Category category) {
-        return categoryRepository.save(category);
+    public CategoryDto add(Category category) {
+        return categoryMapper.categoryToCategoryDto(categoryRepository.save(category));
+    }
+
+    @Override
+    public void update(Category category) {
+        categoryRepository.save(category);
     }
 
     @Override

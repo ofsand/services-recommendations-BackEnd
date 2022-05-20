@@ -1,11 +1,12 @@
 package org.capgemini.servicesrecommendationbackEnd.business;
 
+import org.capgemini.servicesrecommendationbackEnd.dto.RecommendationDto;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 
 import java.util.List;
 
 public interface RecommendationBusiness {
-    public List<Recommendation> getAll();
+    public List<RecommendationDto> getAll();
     public Recommendation get(Long recommendationId);
     public List<Recommendation> getRecommendationsByService(Long serviceId);
     public List<Recommendation> getRecommendationsByTradesperson(Long tradespersonId);

@@ -1,100 +1,58 @@
 package org.capgemini.servicesrecommendationbackEnd.business;
 
+import lombok.RequiredArgsConstructor;
+import org.capgemini.servicesrecommendationbackEnd.dto.RecommendationDto;
+import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
-import org.capgemini.servicesrecommendationbackEnd.models.Service;
-import org.capgemini.servicesrecommendationbackEnd.models.Tradesperson;
 import org.capgemini.servicesrecommendationbackEnd.repository.RecommendationRepository;
-import org.capgemini.servicesrecommendationbackEnd.repository.ServiceRepository;
-import org.capgemini.servicesrecommendationbackEnd.repository.TradespersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class RecommendationBusinessDefault implements RecommendationBusiness {
-
-    @Autowired
-    public TradespersonRepository tradespersonRepository;
-
-    @Autowired
-    public ServiceRepository serviceRepository;
-
-    @Autowired
-    public RecommendationRepository recommendationRepository;
+    private final RecommendationRepository recommendationRepository;
+    private final RecommendationMapper recommendationMapper;
 
     @Override
-    public List<Recommendation> getAll() {
-        return recommendationRepository.findAll();
+    public List<RecommendationDto> getAll() {
+        return recommendationRepository.findAll().stream().map(recommendationMapper::recommendationToRecommendationDto).collect(Collectors.toList());
     }
 
     @Override
-    public Recommendation get(Long id) {
-        return recommendationRepository.getById(id);
+    public Recommendation get(Long recommendationId) {
+        return null;
     }
 
+    @Override
+    public List<Recommendation> getRecommendationsByService(Long serviceId) {
+        return null;
+    }
+
+    @Override
+    public List<Recommendation> getRecommendationsByTradesperson(Long tradespersonId) {
+        return null;
+    }
+
+    @Override
     public void addToService(Long serviceId, Recommendation recommendation) {
-        Service service = serviceRepository.getById(serviceId);
-        recommendation.setService(service);
 
-        /*
-        List<Recommendation> listRecommendations ;
-        listRecommendations = service.getRecommendations();
-        listRecommendations.add(recommendation);
-        service.setRecommendations(listRecommendations);
-
-        // service.getRecommendations().add(recommendation);
-        */
-
-        recommendationRepository.save(recommendation);
     }
 
-
+    @Override
     public void addToTradesperson(Long tradespersonId, Recommendation recommendation) {
-        Tradesperson tradesperson = tradespersonRepository.getById(tradespersonId);
-        recommendation.setTradesperson(tradesperson);
 
-        /*
-        List<Recommendation> listRecommendations ;
-        listRecommendations = tradesperson.getRecommendations();
-        listRecommendations.add(recommendation);
-        tradesperson.setRecommendations(listRecommendations);
-
-        // tradesperson.getRecommendations().add(recommendation);
-        */
-
-        recommendationRepository.save(recommendation);
     }
 
     @Override
     public void update(Recommendation recommendation) {
-        recommendationRepository.save(recommendation);
+
     }
-
-    public List<Recommendation> getRecommendationsByService(Long serviceId) {
-        /*
-        Service service = serviceRepository.getById(serviceId);
-
-        List<Recommendation> listRecommendations ;
-        listRecommendations = service.getRecommendations().stream().filter(Recommendation::isApproved).collect(Collectors.toList());
-        return listRecommendations;
-        */
-        return recommendationRepository.getRecommendationsByService(serviceId);
-    }
-
-    public List<Recommendation> getRecommendationsByTradesperson(Long tradespersonId) {
-        /*
-        Tradesperson tradesperson = tradespersonRepository.getById(tradespersonId);
-
-        List<Recommendation> listRecommendations ;
-        listRecommendations = tradesperson.getRecommendations().stream().filter(Recommendation::isApproved).collect(Collectors.toList());
-        return listRecommendations;
-        */
-
-        return recommendationRepository.getRecommendationsByTradesperson(tradespersonId);
-    }
-
 
     @Override
-    public void delete(Long id) {
-        recommendationRepository.deleteById(id);
+    public void delete(Long recommendationId) {
+
     }
 }

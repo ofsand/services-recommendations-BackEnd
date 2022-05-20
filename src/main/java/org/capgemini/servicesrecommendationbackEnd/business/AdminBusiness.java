@@ -1,6 +1,14 @@
 package org.capgemini.servicesrecommendationbackEnd.business;
 
+import org.capgemini.servicesrecommendationbackEnd.dto.UserDto;
+import org.capgemini.servicesrecommendationbackEnd.models.User;
+
+import java.util.List;
+
 public interface AdminBusiness {
-    public void approveRecommendation(Long recommendationId);
-    public void declineRecommendation(Long recommendationId);
+    void approveRecommendation(Long recommendationId);
+    void declineRecommendation(Long recommendationId);
+    List<UserDto> getAll();
+    UserDto add(User user);
+
 }

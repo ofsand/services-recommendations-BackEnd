@@ -5,12 +5,15 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
+@Table
 @Data
-public class Service extends ServiceTradesPerson {
+public class TradesPerson extends ServiceTradesPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_service")
     private Long id;
-    private String location;
-
+    private String firstName;
+    private String lastName;
+    private String domain;
+    private String speciality;
+    private String address;
 }
