@@ -5,6 +5,7 @@ import org.capgemini.servicesrecommendationbackEnd.business.CategoryBusiness;
 import org.capgemini.servicesrecommendationbackEnd.business.ServiceTradesPersonBusiness;
 import org.capgemini.servicesrecommendationbackEnd.business.UserBusiness;
 import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
+import org.capgemini.servicesrecommendationbackEnd.dto.ServiceDto;
 import org.capgemini.servicesrecommendationbackEnd.mapper.CategoryMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.*;
 import org.springframework.boot.CommandLineRunner;
@@ -43,7 +44,7 @@ public class ServicesRecommendationBackEndApplication {
 			//Save Categories
 			List<CategoryDto> categories =
 					Stream.of("Medical", "Painter", "Plumber").map(name -> {
-						Category category = new Category();
+						CategoryDto category = new CategoryDto();
 						category.setName(name);
 						return categoryBusiness.addCategory(category);
 					}).collect(Collectors.toList());
@@ -60,13 +61,12 @@ public class ServicesRecommendationBackEndApplication {
 
 
 			//Save Service
-			Service service = new Service();
+			ServiceDto service = new ServiceDto();
 			service.setEmail("service@gmail.com");
 			service.setTitle("title 1");
 			service.setPhoneNumber("0766131555");
-			service.setCategory(categoryMapper.categoryDtoToCategory(categories.stream().findFirst().orElse(new CategoryDto())));
 			service.setLocation("kenitra");
-			serviceTradesPersonBusiness.add(service);
+			//serviceTradesPersonBusiness.add(service);
 			//Save Trades Person
 			TradesPerson tradesPerson = new TradesPerson();
 			tradesPerson.setEmail("service@gmail.com");
@@ -76,7 +76,7 @@ public class ServicesRecommendationBackEndApplication {
 			tradesPerson.setFirstName("zakaria");
 			tradesPerson.setLastName("chadli");
 			tradesPerson.setSpeciality("Medecin");
-			serviceTradesPersonBusiness.add(tradesPerson);
+			//serviceTradesPersonBusiness.add(tradesPerson);
 		};
 	}
 

@@ -5,7 +5,6 @@ import org.capgemini.servicesrecommendationbackEnd.dto.ServicesTradesPersonDto;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
 import org.capgemini.servicesrecommendationbackEnd.mapper.ServiceMapper;
-import org.capgemini.servicesrecommendationbackEnd.mapper.ServiceTradesPersonMapper;
 import org.capgemini.servicesrecommendationbackEnd.mapper.TradesPersonMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Service;
 import org.capgemini.servicesrecommendationbackEnd.models.ServiceTradesPerson;
