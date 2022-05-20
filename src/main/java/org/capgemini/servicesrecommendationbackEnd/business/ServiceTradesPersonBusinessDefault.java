@@ -2,6 +2,8 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.dto.ServicesTradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
+import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
 import org.capgemini.servicesrecommendationbackEnd.mapper.ServiceMapper;
 import org.capgemini.servicesrecommendationbackEnd.mapper.ServiceTradesPersonMapper;
 import org.capgemini.servicesrecommendationbackEnd.mapper.TradesPersonMapper;
@@ -22,7 +24,7 @@ public class ServiceTradesPersonBusinessDefault implements ServiceTradesPersonBu
     private final TradesPersonMapper tradesPersonMapper;
     private final ServiceMapper serviceMapper;
 
-    public List<ServicesTradesPersonDto> getAll() {
+    public List<ServicesTradesPersonDto> getAllServicesTradesPersons() {
          return serviceTradesPersonRepository
                  .findAll()
                  .stream()
@@ -33,17 +35,45 @@ public class ServiceTradesPersonBusinessDefault implements ServiceTradesPersonBu
                      }
                    else {
                          TradesPerson tradesPerson = (TradesPerson) element;
-                         return  tradesPersonMapper.tradesPersonToTradesPersonDto(tradesPerson);
+                         return tradesPersonMapper.tradesPersonToTradesPersonDto(tradesPerson);
                      }
                  })
                  .collect(Collectors.toList());
     }
 
     @Override
-    public ServiceTradesPerson add(ServiceTradesPerson serviceTradesPerson) {
-        return serviceTradesPersonRepository.save(serviceTradesPerson);
+    public ServicesTradesPersonDto addServiceTradesPerson(ServiceTradesPerson serviceTradesPerson) {
+        if(serviceTradesPerson instanceof Service) {
+            Service service = (Service) serviceTradesPerson;
+            serviceTradesPersonRepository.save(service);
+            return serviceMapper.serviceToServiceDto(service);
+        }
+        else {
+            TradesPerson tradesPerson = (TradesPerson) serviceTradesPerson;
+            serviceTradesPersonRepository.save(tradesPerson);
+            return tradesPersonMapper.tradesPersonToTradesPersonDto(tradesPerson);
+        }
     }
 
+    @Override
+    public ServicesTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId) {
+        ServiceTradesPerson serviceTradesPerson = serviceTradesPersonRepository.findById(serviceTradesPersonId)
+                .orElseThrow(() -> new BusinessException(ErrorsMessage.NOT_FOUND_ID));
+        if(serviceTradesPerson instanceof Service) {
+            Service service = (Service) serviceTradesPerson;
+            serviceTradesPersonRepository.save(service);
+            return serviceMapper.serviceToServiceDto(service);
+        }
+        else {
+            TradesPerson tradesPerson = (TradesPerson) serviceTradesPerson;
+            serviceTradesPersonRepository.save(tradesPerson);
+            return tradesPersonMapper.tradesPersonToTradesPersonDto(tradesPerson);
+        }
+    }
 
-    
+    @Override
+    public ServicesTradesPersonDto findServiceTradesPersonByTitle(String title) {
+        return null;
+    }
+
 }

@@ -18,28 +18,28 @@ public class CategoryController {
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public List<CategoryDto> findAll() {
-        return categoryBusiness.getAll();
+        return categoryBusiness.getAllCategories();
     }
 
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.GET)
     public CategoryDto findById(@PathVariable Long categoryId) {
-        return categoryBusiness.get(categoryId);
+        return categoryBusiness.getCategory(categoryId);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public void add(@RequestBody Category category){
-        categoryBusiness.add(category);
+        categoryBusiness.addCategory(category);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/category/{categoryId}")
     public void update(@PathVariable Long categoryId ,@RequestBody Category category){
         category.setIdCategory(categoryId);
-        categoryBusiness.update(category);
+        categoryBusiness.updateCategory(category);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/category/{categoryId}")
     public void delete(@PathVariable Long categoryId){
-        categoryBusiness.delete(categoryId);
+        categoryBusiness.deleteCategory(categoryId);
     }
 }
 

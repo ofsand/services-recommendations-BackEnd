@@ -16,6 +16,6 @@ public class RecommendationController {
     private final RecommendationBusiness recommendationBusiness;
     @RequestMapping(value="/recommendations", method = RequestMethod.GET)
     public List<RecommendationDto> findAll() {
-        return recommendationBusiness.getAll();
+        return recommendationBusiness.getAllRecommendations();
     }
 }

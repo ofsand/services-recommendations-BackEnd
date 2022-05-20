@@ -17,6 +17,6 @@ public class ServiceTradesPersonController {
     private final ServiceTradesPersonBusiness serviceTradesPersonBusiness;
     @RequestMapping(method = RequestMethod.GET, value = "/services")
     public List<ServicesTradesPersonDto> findAll() {
-        return serviceTradesPersonBusiness.getAll();
+        return serviceTradesPersonBusiness.getAllServicesTradesPersons();
     }
 }

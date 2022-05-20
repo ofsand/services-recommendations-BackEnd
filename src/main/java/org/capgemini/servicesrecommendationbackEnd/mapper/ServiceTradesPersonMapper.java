@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ServiceTradesPersonMapper {
     ServicesTradesPersonDto serviceTradesPersonToServiceTradesPersonDto(ServiceTradesPerson serviceTradesPerson);
+    ServiceTradesPerson serviceTradesPersonDtoToServiceTradesPerson(ServicesTradesPersonDto serviceTradesPersonDto);
 
 }

@@ -29,4 +29,7 @@ public class User {
     private List<Role> roles;
     @OneToMany(mappedBy = "user")
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "user")
+    private List<Recommendation> recommendations;
 }

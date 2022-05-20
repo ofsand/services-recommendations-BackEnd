@@ -6,7 +6,9 @@ import org.capgemini.servicesrecommendationbackEnd.models.ServiceTradesPerson;
 import java.util.List;
 
 public interface ServiceTradesPersonBusiness {
-    List<ServicesTradesPersonDto> getAll();
-    ServiceTradesPerson add(ServiceTradesPerson serviceTradesPerson);
+    List<ServicesTradesPersonDto> getAllServicesTradesPersons();
+    ServicesTradesPersonDto addServiceTradesPerson(ServiceTradesPerson serviceTradesPerson);
+    ServicesTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId);
 
+    ServicesTradesPersonDto findServiceTradesPersonByTitle(String title);
 }

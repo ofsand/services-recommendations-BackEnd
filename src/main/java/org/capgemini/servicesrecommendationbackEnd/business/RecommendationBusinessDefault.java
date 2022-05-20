@@ -17,42 +17,24 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
     private final RecommendationMapper recommendationMapper;
 
     @Override
-    public List<RecommendationDto> getAll() {
+    public List<RecommendationDto> getAllRecommendations() {
         return recommendationRepository.findAll().stream().map(recommendationMapper::recommendationToRecommendationDto).collect(Collectors.toList());
     }
 
     @Override
-    public Recommendation get(Long recommendationId) {
+    public RecommendationDto getRecommendation(Long recommendationId) {
         return null;
     }
 
     @Override
-    public List<Recommendation> getRecommendationsByService(Long serviceId) {
+    public List<RecommendationDto> getRecommendationsByServiceTradesperson(Long ServiceTradespersonId) {
         return null;
     }
 
     @Override
-    public List<Recommendation> getRecommendationsByTradesperson(Long tradespersonId) {
+    public RecommendationDto addRecommendationToServiceTradesperson(Long ServiceTradespersonId, Recommendation recommendation) {
         return null;
     }
 
-    @Override
-    public void addToService(Long serviceId, Recommendation recommendation) {
 
-    }
-
-    @Override
-    public void addToTradesperson(Long tradespersonId, Recommendation recommendation) {
-
-    }
-
-    @Override
-    public void update(Recommendation recommendation) {
-
-    }
-
-    @Override
-    public void delete(Long recommendationId) {
-
-    }
 }

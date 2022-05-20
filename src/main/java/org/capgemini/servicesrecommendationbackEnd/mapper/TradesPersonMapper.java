@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TradesPersonMapper {
     TradesPersonDto tradesPersonToTradesPersonDto(TradesPerson tradesPerson);
+    TradesPerson tradesPersonDtoToTradesPerson(TradesPersonDto tradesPersonDto);
 }

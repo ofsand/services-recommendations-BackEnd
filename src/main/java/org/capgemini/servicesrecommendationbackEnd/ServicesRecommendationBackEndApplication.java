@@ -3,6 +3,7 @@ package org.capgemini.servicesrecommendationbackEnd;
 import org.capgemini.servicesrecommendationbackEnd.business.AdminBusiness;
 import org.capgemini.servicesrecommendationbackEnd.business.CategoryBusiness;
 import org.capgemini.servicesrecommendationbackEnd.business.ServiceTradesPersonBusiness;
+import org.capgemini.servicesrecommendationbackEnd.business.UserBusiness;
 import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
 import org.capgemini.servicesrecommendationbackEnd.mapper.CategoryMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.*;
@@ -24,6 +25,7 @@ public class ServicesRecommendationBackEndApplication {
 
 	@Bean
 	CommandLineRunner start(AdminBusiness adminBusiness,
+							UserBusiness userBusiness,
 							//RoleBusiness roleBusiness,
 							CategoryBusiness categoryBusiness,
 							CategoryMapper categoryMapper,
@@ -43,7 +45,7 @@ public class ServicesRecommendationBackEndApplication {
 					Stream.of("Medical", "Painter", "Plumber").map(name -> {
 						Category category = new Category();
 						category.setName(name);
-						return categoryBusiness.add(category);
+						return categoryBusiness.addCategory(category);
 					}).collect(Collectors.toList());
 
 			//Save Users
@@ -55,6 +57,7 @@ public class ServicesRecommendationBackEndApplication {
 				user.setPseudo(name);
 				adminBusiness.add(user);
 			});
+
 
 			//Save Service
 			Service service = new Service();
