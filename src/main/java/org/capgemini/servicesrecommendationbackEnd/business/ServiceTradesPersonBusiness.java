@@ -10,4 +10,5 @@ public interface ServiceTradesPersonBusiness {
     ServicesTradesPersonDto addServiceTradesPerson(ServiceTradesPerson serviceTradesPerson);
     ServicesTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId);
 
+    ServicesTradesPersonDto findServiceTradesPersonByTitle(String title);
 }

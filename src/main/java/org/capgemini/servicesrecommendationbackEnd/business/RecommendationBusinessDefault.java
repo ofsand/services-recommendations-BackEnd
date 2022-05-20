@@ -36,13 +36,5 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
         return null;
     }
 
-    @Override
-    public RecommendationDto updateRecommendation(Recommendation recommendation) {
-        return null;
-    }
 
-    @Override
-    public void deleteRecommendation(Long recommendationId) {
-
-    }
 }

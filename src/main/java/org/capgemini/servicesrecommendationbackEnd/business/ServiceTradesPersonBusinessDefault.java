@@ -71,5 +71,9 @@ public class ServiceTradesPersonBusinessDefault implements ServiceTradesPersonBu
         }
     }
 
+    @Override
+    public ServicesTradesPersonDto findServiceTradesPersonByTitle(String title) {
+        return null;
+    }
 
 }
