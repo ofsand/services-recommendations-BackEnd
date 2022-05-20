@@ -9,4 +9,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ServiceMapper {
     ServiceDto serviceToServiceDto(Service service);
+    Service serviceDtoToService(ServiceDto serviceDto);
 }

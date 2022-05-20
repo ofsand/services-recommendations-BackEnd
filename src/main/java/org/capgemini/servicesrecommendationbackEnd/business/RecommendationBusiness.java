@@ -6,12 +6,10 @@ import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 import java.util.List;
 
 public interface RecommendationBusiness {
-    public List<RecommendationDto> getAll();
-    public Recommendation get(Long recommendationId);
-    public List<Recommendation> getRecommendationsByService(Long serviceId);
-    public List<Recommendation> getRecommendationsByTradesperson(Long tradespersonId);
-    public void addToService(Long serviceId, Recommendation recommendation);
-    public void addToTradesperson(Long tradespersonId, Recommendation recommendation);
-    public void update(Recommendation recommendation);
-    public void delete(Long recommendationId);
+    public List<RecommendationDto> getAllRecommendations();
+    public RecommendationDto getRecommendation(Long recommendationId);
+    public List<RecommendationDto> getRecommendationsByServiceTradesperson(Long ServiceTradespersonId);
+    public RecommendationDto addRecommendationToServiceTradesperson(Long ServiceTradespersonId, Recommendation recommendation);
+    public RecommendationDto updateRecommendation(Recommendation recommendation);
+    public void deleteRecommendation(Long recommendationId);
 }

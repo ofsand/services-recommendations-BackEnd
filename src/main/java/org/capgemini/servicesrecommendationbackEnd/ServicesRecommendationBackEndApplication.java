@@ -43,7 +43,7 @@ public class ServicesRecommendationBackEndApplication {
 					Stream.of("Medical", "Painter", "Plumber").map(name -> {
 						Category category = new Category();
 						category.setName(name);
-						return categoryBusiness.add(category);
+						return categoryBusiness.addCategory(category);
 					}).collect(Collectors.toList());
 
 			//Save Users
