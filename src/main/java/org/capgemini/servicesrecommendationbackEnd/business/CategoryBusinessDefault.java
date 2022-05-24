@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
-import org.capgemini.servicesrecommendationbackEnd.mapper.CategoryMapper;
+import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Category;
 import org.capgemini.servicesrecommendationbackEnd.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,28 +17,27 @@ import java.util.stream.Collectors;
 public class CategoryBusinessDefault implements CategoryBusiness {
 
     private final CategoryRepository categoryRepository;
-    private final CategoryMapper categoryMapper;
+    private final RecommendationMapper recommendationMapper;
 
     @Override
     public List<CategoryDto> getAllCategories() {
         return
             categoryRepository
-                .findAll()
-                .stream()
-                .map(categoryMapper::categoryToCategoryDto)
-                .collect(Collectors.toList());
+                    .findAll()
+                    .stream()
+                    .map(recommendationMapper::toCategoryDto).collect(Collectors.toList());
     }
 
     @Override
     public CategoryDto getCategory(Long id) {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorsMessage.NOT_FOUND_USER));
-        return categoryMapper.categoryToCategoryDto(category);
+        return recommendationMapper.toCategoryDto(category);
     }
 
     @Override
     public CategoryDto addCategory(CategoryDto categoryDto) {
-        Category category = categoryMapper.categoryDtoToCategory(categoryDto);
-        return categoryMapper.categoryToCategoryDto(categoryRepository.save(category));
+        Category category = recommendationMapper.toCategory(categoryDto);
+        return recommendationMapper.toCategoryDto(categoryRepository.save(category));
     }
 
     @Override
@@ -51,7 +49,7 @@ public class CategoryBusinessDefault implements CategoryBusiness {
 
     @Override
     public void deleteCategory(Long id) {
-        CategoryDto categoryDto = categoryMapper.categoryToCategoryDto(categoryRepository.getById(id));
+        CategoryDto categoryDto = recommendationMapper.toCategoryDto(categoryRepository.getById(id));
         categoryRepository.deleteById(id);
 
     }

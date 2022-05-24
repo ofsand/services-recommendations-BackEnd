@@ -21,6 +21,6 @@ public class Category {
     @ManyToOne
     @JoinColumn(name="id_user")
     private User user;
-    @OneToMany(mappedBy = "category")
-    private List<ServiceTradesPerson> recommendationServices;
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    private List<ServiceTradesPerson> serviceTradesPersons;
 }

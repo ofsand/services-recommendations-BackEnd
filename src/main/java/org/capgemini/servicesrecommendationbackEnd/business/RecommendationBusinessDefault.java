@@ -18,7 +18,7 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
 
     @Override
     public List<RecommendationDto> getAllRecommendations() {
-        return recommendationRepository.findAll().stream().map(recommendationMapper::recommendationToRecommendationDto).collect(Collectors.toList());
+        return null;
     }
 
     @Override

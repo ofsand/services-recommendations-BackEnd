@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.business;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.dto.UserDto;
-import org.capgemini.servicesrecommendationbackEnd.mapper.UserMapper;
+import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.Role;
 import org.capgemini.servicesrecommendationbackEnd.models.User;
@@ -19,18 +19,18 @@ public class UserBusinessDefault implements UserBusiness{
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final UserMapper userMapper;
+    private final RecommendationMapper recommendationMapper;
     private final ServiceTradesPersonBusiness serviceTradesPersonBusiness;
     private final RecommendationRepository recommendationRepository;
 
     @Override
     public UserDto addUser(User user) {
-        return userMapper.userToUserDto(userRepository.save(user));
+        return recommendationMapper.toUserDto(userRepository.save(user));
     }
 
     @Override
     public UserDto findUserById(Long userId) {
-        return userMapper.userToUserDto(userRepository.getById(userId));
+        return recommendationMapper.toUserDto(userRepository.getById(userId));
     }
 
     @Override
