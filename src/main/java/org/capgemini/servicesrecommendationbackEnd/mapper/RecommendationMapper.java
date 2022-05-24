@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface RecommendationMapper {
     RecommendationDto recommendationToRecommendationDto(Recommendation recommendation);
+    Recommendation recommendationDtoToRecommendation(RecommendationDto recommendationDto);
 }

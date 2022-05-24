@@ -43,9 +43,9 @@ public class ServicesRecommendationBackEndApplication {
 			//Save Categories
 			List<CategoryDto> categories =
 					Stream.of("Medical", "Painter", "Plumber").map(name -> {
-						Category category = new Category();
-						category.setName(name);
-						return categoryBusiness.addCategory(category);
+						CategoryDto categoryDto = new CategoryDto();
+						categoryDto.setName(name);
+						return categoryBusiness.addCategory(categoryDto);
 					}).collect(Collectors.toList());
 
 			//Save Users

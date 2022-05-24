@@ -9,10 +9,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RecommendationRepository extends JpaRepository<Recommendation, Long> {
-   /*
-    @Query("select r from Recommendation r where r.service.id = :serviceId and isApproved = true")
-    public List<Recommendation> getRecommendationsByService(@Param("serviceId") Long serviceId);
 
+    @Query("select r from Recommendation r where r.serviceTradesPerson.id = :serviceTradespersonId and isApproved = true")
+    public List<Recommendation> getRecommendationsByServiceTradesperson(@Param("serviceTradespersonId") Long serviceTradespersonId);
+
+    /*
     @Query("select r from Recommendation r where r.tradesperson.id = :tradespersonId and isApproved = true")
     public List<Recommendation> getRecommendationsByTradesperson(@Param("tradespersonId") Long tradespersonId);
     */

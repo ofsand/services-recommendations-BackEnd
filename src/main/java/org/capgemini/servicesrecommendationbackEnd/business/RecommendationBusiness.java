@@ -8,6 +8,6 @@ import java.util.List;
 public interface RecommendationBusiness {
     List<RecommendationDto> getAllRecommendations();
     RecommendationDto getRecommendation(Long recommendationId);
-    List<RecommendationDto> getRecommendationsByServiceTradesperson(Long ServiceTradespersonId);
-    RecommendationDto addRecommendationToServiceTradesperson(Long ServiceTradespersonId, Recommendation recommendation);
+    List<RecommendationDto> getRecommendationsByServiceTradesperson(Long serviceTradespersonId);
+    RecommendationDto addRecommendationToServiceTradesperson(Long serviceTradespersonId, RecommendationDto recommendationDto);
 }
