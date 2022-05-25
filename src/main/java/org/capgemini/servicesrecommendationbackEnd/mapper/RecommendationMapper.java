@@ -1,11 +1,44 @@
 package org.capgemini.servicesrecommendationbackEnd.mapper;
 
-import org.capgemini.servicesrecommendationbackEnd.dto.RecommendationDto;
-import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
+import org.capgemini.servicesrecommendationbackEnd.dto.*;
+import org.capgemini.servicesrecommendationbackEnd.models.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.MapperConfig;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RecommendationMapper {
-    RecommendationDto recommendationToRecommendationDto(Recommendation recommendation);
-    Recommendation recommendationDtoToRecommendation(RecommendationDto recommendationDto);
+    default ServiceTradesPersonDto toServiceTradesPersonDto(ServiceTradesPerson serviceTradesPerson) {
+        if(serviceTradesPerson instanceof Service) {
+            Service service = (Service) serviceTradesPerson;
+            return  serviceToServiceDto(service);
+        }
+        else {
+            TradesPerson tradesPerson = (TradesPerson) serviceTradesPerson;
+            return tradesPersonToTradesPersonDto(tradesPerson);
+        }
+    }
+
+    default ServiceTradesPerson toServiceTradesPerson(ServiceTradesPersonDto serviceTradesPersonDto) {
+        if(serviceTradesPersonDto instanceof ServiceDto) {
+            ServiceDto serviceDto = (ServiceDto) serviceTradesPersonDto;
+            return serviceDtoToService(serviceDto);
+        }
+        else {
+            TradesPersonDto tradesPersonDto = (TradesPersonDto) serviceTradesPersonDto;
+            return tradesPersonDtoToTradesPerson(tradesPersonDto);
+        }
+    }
+
+    ServiceDto serviceToServiceDto(Service service);
+    Service serviceDtoToService(ServiceDto serviceDto);
+    TradesPersonDto tradesPersonToTradesPersonDto(TradesPerson tradesPerson);
+    TradesPerson tradesPersonDtoToTradesPerson(TradesPersonDto tradesPersonDto);
+
+    CategoryDto toCategoryDto(Category category);
+    Category toCategory(CategoryDto categoryDto);
+
+    UserDto toUserDto(User user);
+    User toUser(UserDto userDto);
 }
