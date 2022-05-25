@@ -50,7 +50,7 @@ public class UserBusinessDefault implements UserBusiness{
     @Override
     public Recommendation recommend(User user, Long serviceTradesPersonId, Recommendation recommendation) {
         // filter if the user exist -> find by email
-        recommendation.setServiceTradesPerson(serviceTradesPersonMapper.serviceTradesPersonDtoToServiceTradesPerson(serviceTradesPersonBusiness.findServiceTradesPersonById(serviceTradesPersonId)));
+        //recommendation.setServiceTradesPerson(serviceTradesPersonMapper.serviceTradesPersonDtoToServiceTradesPerson(serviceTradesPersonBusiness.findServiceTradesPersonById(serviceTradesPersonId)));
         List<Recommendation> recommendations = user.getRecommendations();
         recommendations.add(recommendation);
         user.setRecommendations(recommendations);

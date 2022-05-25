@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryBusiness categoryBusiness;
-
+    /*
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public List<CategoryDto> findAll() {
@@ -41,5 +41,7 @@ public class CategoryController {
     public void delete(@PathVariable Long categoryId){
         categoryBusiness.deleteCategory(categoryId);
     }
+
+     */
 }
 

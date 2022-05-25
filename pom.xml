@@ -15,6 +15,7 @@
 	<description>Recommendations des services et personne metiers</description>
 	<properties>
 		<java.version>11</java.version>
+		<mockito.version>4.2.0</mockito.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,6 +36,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<!--<dependency>
 			<groupId>org.postgresql</groupId>
@@ -80,6 +86,7 @@
 			<groupId>org.jeasy</groupId>
 			<artifactId>easy-random-core</artifactId>
 			<version>4.0.0</version>
+
 		</dependency>
 	</dependencies>
 

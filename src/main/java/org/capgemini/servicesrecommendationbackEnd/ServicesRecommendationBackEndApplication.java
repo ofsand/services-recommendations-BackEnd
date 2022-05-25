@@ -23,6 +23,7 @@ public class ServicesRecommendationBackEndApplication {
 		SpringApplication.run(ServicesRecommendationBackEndApplication.class, args);
 	}
 
+	/*
 	@Bean
 	CommandLineRunner start(AdminBusiness adminBusiness,
 							UserBusiness userBusiness,
@@ -31,7 +32,7 @@ public class ServicesRecommendationBackEndApplication {
 							CategoryMapper categoryMapper,
 							ServiceTradesPersonBusiness serviceTradesPersonBusiness
 	) {
-		return args -> {
+		return args -> {*/
 
 			//Save Roles
       /*
@@ -41,7 +42,7 @@ public class ServicesRecommendationBackEndApplication {
          roleBusiness.save(role);
       });*/
 			//Save Categories
-			List<CategoryDto> categories =
+			/*List<CategoryDto> categories =
 					Stream.of("Medical", "Painter", "Plumber").map(name -> {
 						Category category = new Category();
 						category.setName(name);
@@ -79,5 +80,7 @@ public class ServicesRecommendationBackEndApplication {
 			serviceTradesPersonBusiness.add(tradesPerson);
 		};
 	}
+
+			 */
 
 }
