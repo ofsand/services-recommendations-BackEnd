@@ -5,6 +5,7 @@ import org.capgemini.servicesrecommendationbackEnd.dto.UserDto;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.Role;
+import org.capgemini.servicesrecommendationbackEnd.models.ServiceTradesPerson;
 import org.capgemini.servicesrecommendationbackEnd.models.User;
 import org.capgemini.servicesrecommendationbackEnd.repository.RecommendationRepository;
 import org.capgemini.servicesrecommendationbackEnd.repository.RoleRepository;
@@ -25,12 +26,29 @@ public class UserBusinessDefault implements UserBusiness{
 
     @Override
     public UserDto addUser(User user) {
-        return recommendationMapper.toUserDto(userRepository.save(user));
+        // filter if the user exist -> find by email
+        UserDto user1 =findUserByEmail(user.getEmail());
+
+        if(user1!=null){
+            return user1;
+        }else{
+
+            User newUser= userRepository.save(user);
+            return recommendationMapper.toUserDto(newUser);
+        }
+
+
     }
 
     @Override
     public UserDto findUserById(Long userId) {
         return recommendationMapper.toUserDto(userRepository.getById(userId));
+    }
+
+    @Override
+    public UserDto findUserByEmail(String email) {
+        User user=userRepository.findByEmail(email);
+        return recommendationMapper.toUserDto(user);
     }
 
     @Override
@@ -47,16 +65,5 @@ public class UserBusinessDefault implements UserBusiness{
         return roleList;
     }
 
-    @Override
-    public Recommendation recommend(User user, Long serviceTradesPersonId, Recommendation recommendation) {
-        // filter if the user exist -> find by email
-        /*
-        recommendation.setServiceTradesPerson(serviceTradesPersonMapper.serviceTradesPersonDtoToServiceTradesPerson(serviceTradesPersonBusiness.findServiceTradesPersonById(serviceTradesPersonId)));
-        List<Recommendation> recommendations = user.getRecommendations();
-        recommendations.add(recommendation);
-        user.setRecommendations(recommendations);
-        return recommendationRepository.save(recommendation);
-        */
-        return null;
-    }
+
 }

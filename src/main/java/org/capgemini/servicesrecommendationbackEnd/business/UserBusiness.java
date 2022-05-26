@@ -12,8 +12,9 @@ public interface UserBusiness {
 
     UserDto addUser(User user);
     UserDto findUserById(Long userId);
+
+    UserDto findUserByEmail(String email);
     Role findRoleById(Long roleId);
     List<Role> addRoleToUser(Long userId, Long roleId);
-    Recommendation recommend(User user,Long serviceTradesPersonId, Recommendation recommendation);
 
 }
