@@ -41,4 +41,7 @@ public interface RecommendationMapper {
 
     UserDto toUserDto(User user);
     User toUser(UserDto userDto);
+
+    Recommendation toRecommendation(RecommendationDto recommendationDto);
+    RecommendationDto toRecommendationDto(Recommendation recommendation);
 }

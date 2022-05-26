@@ -7,6 +7,7 @@ import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.ServiceTradesPerson;
+import org.capgemini.servicesrecommendationbackEnd.models.User;
 import org.capgemini.servicesrecommendationbackEnd.repository.RecommendationRepository;
 import org.capgemini.servicesrecommendationbackEnd.repository.ServiceTradesPersonRepository;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,13 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
     private final RecommendationRepository recommendationRepository;
     private final RecommendationMapper recommendationMapper;
     private final ServiceTradesPersonRepository serviceTradesPersonRepository;
+    private final UserBusiness userBusiness;
 
     @Override
     public List<RecommendationDto> getAllRecommendations() {
         return recommendationRepository.findAll()
                 .stream()
-                .map(recommendationMapper::recommendationToRecommendationDto)
+                .map(recommendationMapper::toRecommendationDto)
                 .collect(Collectors.toList());
     }
 
@@ -35,7 +37,7 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
                 .findById(recommendationId)
                 .orElseThrow(() -> new BusinessException(ErrorsMessage.NOT_FOUND_ID));
 
-        return recommendationMapper.recommendationToRecommendationDto(recommendation);
+        return recommendationMapper.toRecommendationDto(recommendation);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
         List<Recommendation> recommendations = recommendationRepository.getRecommendationsByServiceTradesperson(serviceTradespersonId);
 
         return recommendations.stream()
-                .map(recommendationMapper::recommendationToRecommendationDto)
+                .map(recommendationMapper::toRecommendationDto)
                 .collect(Collectors.toList());
     }
 
@@ -55,14 +57,19 @@ public class RecommendationBusinessDefault implements RecommendationBusiness {
                 .findById(ServiceTradespersonId)
                 .orElseThrow(() -> new BusinessException(ErrorsMessage.NOT_FOUND_ID));
 
+        //
+        User user = recommendationMapper.toUser(recommendationDto.getUser());
+        User savedUser = recommendationMapper.toUser(userBusiness.addUser(user));
+
         // Set the founded ServiceTradesPerson to the Recommendation
-        Recommendation recommendation = recommendationMapper.recommendationDtoToRecommendation(recommendationDto);
+        Recommendation recommendation = recommendationMapper.toRecommendation(recommendationDto);
         recommendation.setServiceTradesPerson(serviceTradesperson);
+        recommendation.setUser(savedUser);
 
         // Save the new Recommendation
         Recommendation savedRecommendation = recommendationRepository.save(recommendation);
 
-        return recommendationMapper.recommendationToRecommendationDto(savedRecommendation);
+        return recommendationMapper.toRecommendationDto(savedRecommendation);
     }
 
 
