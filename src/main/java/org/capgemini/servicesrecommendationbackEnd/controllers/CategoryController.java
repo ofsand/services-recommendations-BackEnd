@@ -1,9 +1,8 @@
 package org.capgemini.servicesrecommendationbackEnd.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.capgemini.servicesrecommendationbackEnd.business.CategoryBusiness;
-import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
-import org.capgemini.servicesrecommendationbackEnd.models.Category;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.CategoryServiceInterface;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class CategoryController {
-    private final CategoryBusiness categoryBusiness;
+    private final CategoryServiceInterface categoryBusiness;
 
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)

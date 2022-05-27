@@ -1,7 +1,7 @@
 package org.capgemini.servicesrecommendationbackEnd.mapper;
 
-import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
-import org.capgemini.servicesrecommendationbackEnd.models.Category;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.Category;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel="spring")

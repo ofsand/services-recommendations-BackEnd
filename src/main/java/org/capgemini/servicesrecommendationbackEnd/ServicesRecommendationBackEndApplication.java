@@ -1,14 +1,14 @@
 package org.capgemini.servicesrecommendationbackEnd;
 
-import lombok.RequiredArgsConstructor;
-import org.capgemini.servicesrecommendationbackEnd.business.AdminBusiness;
-import org.capgemini.servicesrecommendationbackEnd.business.CategoryBusiness;
-import org.capgemini.servicesrecommendationbackEnd.business.ServiceTradesPersonBusiness;
-import org.capgemini.servicesrecommendationbackEnd.business.UserBusiness;
-import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
-import org.capgemini.servicesrecommendationbackEnd.dto.ServiceDto;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.AdminServiceInterface;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.CategoryServiceInterface;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.ServiceTradesPersonServiceInterface;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.UserServiceInterface;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.ServiceDto;
 import org.capgemini.servicesrecommendationbackEnd.mapper.CategoryMapper;
-import org.capgemini.servicesrecommendationbackEnd.models.*;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.TradesPerson;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,12 +28,12 @@ public class ServicesRecommendationBackEndApplication {
 	}
 
 	@Bean
-	CommandLineRunner start(AdminBusiness adminBusiness,
-							UserBusiness userBusiness,
+	CommandLineRunner start(AdminServiceInterface adminBusiness,
+							UserServiceInterface userBusiness,
 							//RoleBusiness roleBusiness,
-							CategoryBusiness categoryBusiness,
+							CategoryServiceInterface categoryBusiness,
 							CategoryMapper categoryMapper,
-							ServiceTradesPersonBusiness serviceTradesPersonBusiness
+							ServiceTradesPersonServiceInterface serviceTradesPersonBusiness
 	) {
 		return args -> {
 

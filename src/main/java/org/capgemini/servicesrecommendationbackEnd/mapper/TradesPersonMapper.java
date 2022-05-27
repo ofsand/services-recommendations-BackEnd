@@ -1,7 +1,7 @@
 package org.capgemini.servicesrecommendationbackEnd.mapper;
 
-import org.capgemini.servicesrecommendationbackEnd.dto.TradesPersonDto;
-import org.capgemini.servicesrecommendationbackEnd.models.TradesPerson;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.TradesPerson;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

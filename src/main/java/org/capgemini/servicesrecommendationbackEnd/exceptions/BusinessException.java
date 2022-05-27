@@ -2,11 +2,11 @@ package org.capgemini.servicesrecommendationbackEnd.exceptions;
 
 public class BusinessException extends RuntimeException{
 
-    ErrorsMessage errorsMessage;
-    public BusinessException(ErrorsMessage errorsMessage){
+    ErrorsMessageException errorsMessage;
+    public BusinessException(ErrorsMessageException errorsMessage){
              this.errorsMessage=errorsMessage;    }
 
-    public ErrorsMessage getErrorsMessage() {
+    public ErrorsMessageException getErrorsMessage() {
         return errorsMessage;
     }
 }

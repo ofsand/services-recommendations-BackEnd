@@ -1,10 +1,8 @@
 package org.capgemini.servicesrecommendationbackEnd.mapper;
 
-import org.capgemini.servicesrecommendationbackEnd.dto.UserDto;
-import org.capgemini.servicesrecommendationbackEnd.models.User;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
 import org.mapstruct.Mapper;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
