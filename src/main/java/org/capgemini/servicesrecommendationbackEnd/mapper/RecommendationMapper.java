@@ -1,14 +1,14 @@
 package org.capgemini.servicesrecommendationbackEnd.mapper;
 
-import org.capgemini.servicesrecommendationbackEnd.dto.*;
-import org.capgemini.servicesrecommendationbackEnd.models.*;
-import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
 
-import java.util.List;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.*;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.*;
+import org.mapstruct.Mapper;
+
 
 @Mapper(componentModel = "spring")
 public interface RecommendationMapper {
+
     default ServiceTradesPersonDto toServiceTradesPersonDto(ServiceTradesPerson serviceTradesPerson) {
         if(serviceTradesPerson instanceof Service) {
             Service service = (Service) serviceTradesPerson;

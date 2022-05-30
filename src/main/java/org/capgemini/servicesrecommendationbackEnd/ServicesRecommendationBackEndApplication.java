@@ -1,15 +1,17 @@
 package org.capgemini.servicesrecommendationbackEnd;
 
-import org.capgemini.servicesrecommendationbackEnd.business.*;
-import org.capgemini.servicesrecommendationbackEnd.dto.CategoryDto;
-import org.capgemini.servicesrecommendationbackEnd.dto.ServiceDto;
-import org.capgemini.servicesrecommendationbackEnd.dto.TradesPersonDto;
-import org.capgemini.servicesrecommendationbackEnd.models.Role;
-import org.capgemini.servicesrecommendationbackEnd.models.User;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.ServiceDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.Role;
+import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,22 +24,20 @@ public class ServicesRecommendationBackEndApplication {
 		SpringApplication.run(ServicesRecommendationBackEndApplication.class, args);
 	}
 
-
-
 	@Bean
-	CommandLineRunner start(AdminBusiness adminBusiness,
-							UserBusiness userBusiness,
-							RoleBusiness roleBusiness,
-							CategoryBusiness categoryBusiness,
-							ServiceTradesPersonBusiness serviceTradesPersonBusiness
+	CommandLineRunner start(AdminService adminBusiness,
+							UserService userBusiness,
+							RoleService roleBusiness,
+							CategoryService categoryBusiness,
+							ServiceTradesPersonService serviceTradesPersonBusiness
 	) {
 		return args -> {
 
 			//Save Roles
 			Stream.of("ADMIN", "USER").forEach(name -> {
-			Role role = new Role();
-			role.setRole(name);
-			roleBusiness.add(role);
+				Role role = new Role();
+				role.setRole("ROLE_"+name);
+				roleBusiness.add(role);
 			});
 
 			//Save Users
@@ -47,9 +47,10 @@ public class ServicesRecommendationBackEndApplication {
 				user.setUsername(name);
 				user.setPassword(name);
 				user.setPseudo(name);
-				adminBusiness.add(user);
+				userBusiness.addUser(user);
 			});
-			//userBusiness.addRoleToUser(1L, 1L);
+
+			userBusiness.addRoleToUser(1L, 1L);
 
 			//Save Categories
 			List<CategoryDto> categories =
@@ -81,6 +82,9 @@ public class ServicesRecommendationBackEndApplication {
 		};
 	}
 
-
+	@Bean
+	public PasswordEncoder encoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 }

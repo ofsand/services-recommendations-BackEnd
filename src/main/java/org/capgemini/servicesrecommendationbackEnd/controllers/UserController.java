@@ -1,8 +1,8 @@
 package org.capgemini.servicesrecommendationbackEnd.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.capgemini.servicesrecommendationbackEnd.business.AdminBusiness;
-import org.capgemini.servicesrecommendationbackEnd.dto.UserDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.AdminService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserController {
-    private final AdminBusiness adminBusiness;
+    private final AdminService adminBusiness;
 
     @RequestMapping(method = RequestMethod.GET, value = "/users")
     public List<UserDto> findAll() {

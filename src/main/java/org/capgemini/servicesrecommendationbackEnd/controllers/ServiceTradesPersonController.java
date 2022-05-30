@@ -1,10 +1,10 @@
 package org.capgemini.servicesrecommendationbackEnd.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.capgemini.servicesrecommendationbackEnd.business.ServiceTradesPersonBusiness;
-import org.capgemini.servicesrecommendationbackEnd.dto.ServiceDto;
-import org.capgemini.servicesrecommendationbackEnd.dto.ServiceTradesPersonDto;
-import org.capgemini.servicesrecommendationbackEnd.dto.TradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.ServiceDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.ServiceTradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.ServiceTradesPersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api")
 public class ServiceTradesPersonController {
-    private final ServiceTradesPersonBusiness serviceTradesPersonBusiness;
+    private final ServiceTradesPersonService serviceTradesPersonBusiness;
     @RequestMapping(method = RequestMethod.GET, value = "/services")
     public List<ServiceTradesPersonDto> findAll() {
         return serviceTradesPersonBusiness.getAllServicesTradesPersons();
