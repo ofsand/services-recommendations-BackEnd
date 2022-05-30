@@ -10,13 +10,18 @@ import org.mapstruct.Mapper;
 public interface RecommendationMapper {
 
     default ServiceTradesPersonDto toServiceTradesPersonDto(ServiceTradesPerson serviceTradesPerson) {
+
         if(serviceTradesPerson instanceof Service) {
             Service service = (Service) serviceTradesPerson;
-            return  serviceToServiceDto(service);
+            ServiceDto serviceDto = serviceToServiceDto(service);
+            serviceDto.setType(serviceDto.getClass().getSimpleName());
+            return serviceDto;
         }
         else {
             TradesPerson tradesPerson = (TradesPerson) serviceTradesPerson;
-            return tradesPersonToTradesPersonDto(tradesPerson);
+            TradesPersonDto tradesPersonDto =  tradesPersonToTradesPersonDto(tradesPerson);
+            tradesPersonDto.setType(tradesPersonDto.getClass().getSimpleName());
+            return tradesPersonDto;
         }
     }
 
