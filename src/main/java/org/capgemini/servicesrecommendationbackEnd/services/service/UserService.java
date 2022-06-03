@@ -1,11 +1,9 @@
-package org.capgemini.servicesrecommendationbackEnd.services.serviceInterface;
+package org.capgemini.servicesrecommendationbackEnd.services.service;
 
 import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Role;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
-
-import java.util.List;
 
 public interface UserService {
 

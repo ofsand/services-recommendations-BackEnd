@@ -14,10 +14,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration @EnableWebSecurity @RequiredArgsConstructor
@@ -43,11 +43,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**").permitAll();
         http.authorizeRequests().antMatchers("/api/token/refresh").permitAll();
-        http.authorizeRequests().antMatchers(POST,"/api/category").hasAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET,"/api/categories").permitAll();
-        http.authorizeRequests().antMatchers(GET,"/api/services").permitAll();
 
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers(GET,"/api/admin/**").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(POST,"/api/admin/**").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(PUT,"/api/admin/**").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(DELETE,"/api/admin/**").hasAuthority("ROLE_ADMIN");
+
+        http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -58,4 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         return super.authenticationManagerBean();
     }
+
+
 }

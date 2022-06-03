@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.RecommendationDto;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.RecommendationService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.RecommendationService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

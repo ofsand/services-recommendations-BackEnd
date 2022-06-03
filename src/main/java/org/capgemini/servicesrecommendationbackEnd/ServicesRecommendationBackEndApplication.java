@@ -5,7 +5,7 @@ import org.capgemini.servicesrecommendationbackEnd.models.dto.ServiceDto;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Role;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.*;
+import org.capgemini.servicesrecommendationbackEnd.services.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -86,5 +86,4 @@ public class ServicesRecommendationBackEndApplication {
 	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 }

@@ -1,4 +1,4 @@
-package org.capgemini.servicesrecommendationbackEnd.services.serviceInterface;
+package org.capgemini.servicesrecommendationbackEnd.services.service;
 
 import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.User;

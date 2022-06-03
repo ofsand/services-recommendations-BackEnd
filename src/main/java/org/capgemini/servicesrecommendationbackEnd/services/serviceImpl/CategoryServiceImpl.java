@@ -1,10 +1,8 @@
 package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
-import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
-import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessageException;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.CategoryService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.CategoryService;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Category;
 import org.capgemini.servicesrecommendationbackEnd.repositories.CategoryRepository;
@@ -40,7 +38,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto addCategory(CategoryDto categoryDto) {
         Category category = recommendationMapper.toCategory(categoryDto);
-        return recommendationMapper.toCategoryDto(categoryRepository.save(category));
+        return recommendationMapper.toCategoryDto(
+            categoryRepository.save(category)
+        );
     }
 
     @Override

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,10 +28,9 @@ public class User {
         joinColumns = @JoinColumn(name = "id_user"),
         inverseJoinColumns = @JoinColumn(name="id_role")
     )
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
     @OneToMany(mappedBy = "user")
-    private List<Category> categories;
-
+    private List<Category> categories = new ArrayList<>();
     @OneToMany(mappedBy = "user")
-    private List<Recommendation> recommendations;
+    private List<Recommendation> recommendations = new ArrayList<>();
 }

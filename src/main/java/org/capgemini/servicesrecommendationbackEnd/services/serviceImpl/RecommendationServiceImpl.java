@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.RecommendationService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.RecommendationService;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.RecommendationDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.repositories.RecommendationRepository;

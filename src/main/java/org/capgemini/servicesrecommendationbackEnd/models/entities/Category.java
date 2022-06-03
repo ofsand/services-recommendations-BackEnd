@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -21,6 +22,7 @@ public class Category {
     @ManyToOne
     @JoinColumn(name="id_user")
     private User user;
-    @OneToMany(mappedBy = "category")
-    private List<ServiceTradesPerson> recommendationServices;
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    private List<ServiceTradesPerson> serviceTradesPersons = new ArrayList<>();
+
 }

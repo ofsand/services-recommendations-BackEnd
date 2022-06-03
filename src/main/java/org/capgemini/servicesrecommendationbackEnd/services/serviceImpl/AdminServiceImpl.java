@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.AdminService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.AdminService;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
@@ -27,7 +27,6 @@ public class AdminServiceImpl implements AdminService {
         recommendationRepository.save(recommendation);
     }
 
-
     public void declineRecommendation(Long recommendationId) {
         Recommendation recommendation = recommendationRepository.getById(recommendationId);
         recommendation.setApproved(false);
@@ -38,10 +37,10 @@ public class AdminServiceImpl implements AdminService {
     public List<UserDto> getAll() {
         return
             userRepository
-                    .findAll()
-                    .stream()
-                    .map(recommendationMapper::toUserDto)
-                    .collect(Collectors.toList());
+                .findAll()
+                .stream()
+                .map(recommendationMapper::toUserDto)
+                .collect(Collectors.toList());
     }
 
     @Override

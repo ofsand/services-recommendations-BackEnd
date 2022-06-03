@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,5 +25,5 @@ public abstract class ServiceTradesPerson {
     @JoinColumn(name="id_category")
     private Category category;
     @OneToMany(mappedBy = "serviceTradesPerson")
-    private List<Recommendation> recommendations;
+    private List<Recommendation> recommendations = new ArrayList<>();
 }

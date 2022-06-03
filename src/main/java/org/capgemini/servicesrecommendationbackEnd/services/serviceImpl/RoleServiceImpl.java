@@ -5,7 +5,7 @@ import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Role;
 import org.capgemini.servicesrecommendationbackEnd.repositories.RoleRepository;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.RoleService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.RoleService;
 import org.springframework.stereotype.Service;
 
 @Service

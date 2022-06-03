@@ -3,7 +3,7 @@ package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.ServiceTradesPersonService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.ServiceTradesPersonService;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.UserDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Recommendation;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Role;
@@ -11,7 +11,7 @@ import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
 import org.capgemini.servicesrecommendationbackEnd.repositories.RecommendationRepository;
 import org.capgemini.servicesrecommendationbackEnd.repositories.RoleRepository;
 import org.capgemini.servicesrecommendationbackEnd.repositories.UserRepository;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.UserService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.UserService;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j

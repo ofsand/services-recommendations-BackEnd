@@ -2,7 +2,7 @@ package org.capgemini.servicesrecommendationbackEnd.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.CategoryService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,19 +23,19 @@ public class CategoryController {
         return categoryService.getCategory(categoryId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/category")
+    @RequestMapping(method = RequestMethod.POST, value = "/admin/categories")
     public CategoryDto add(@RequestBody CategoryDto categoryDto){
         return categoryService.addCategory(categoryDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/category/{categoryId}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/admin/category/{categoryId}")
     public CategoryDto update(@PathVariable Long categoryId ,@RequestBody CategoryDto categoryDto){
         categoryDto.setIdCategory(categoryId);
         categoryService.updateCategory(categoryDto);
         return categoryDto;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/category/{categoryId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/admin/category/{categoryId}")
     public void delete(@PathVariable Long categoryId){
         categoryService.deleteCategory(categoryId);
     }

@@ -9,8 +9,8 @@ import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.*;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
 import org.capgemini.servicesrecommendationbackEnd.repositories.*;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.CategoryService;
-import org.capgemini.servicesrecommendationbackEnd.services.serviceInterface.ServiceTradesPersonService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.CategoryService;
+import org.capgemini.servicesrecommendationbackEnd.services.service.ServiceTradesPersonService;
 
 
 import java.util.List;
