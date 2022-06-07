@@ -21,6 +21,7 @@ public abstract class ServiceTradesPerson {
     private String title;
     private String email;
     private String phoneNumber;
+    private String description;
     @ManyToOne
     @JoinColumn(name="id_category")
     private Category category;

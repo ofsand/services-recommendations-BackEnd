@@ -41,7 +41,7 @@ public class ServicesRecommendationBackEndApplication {
 			});
 
 			//Save Users
-			Stream.of("zakaria", "aymane").forEach(name -> {
+			Stream.of("admin", "fatiha").forEach(name -> {
 				User user = new User();
 				user.setEmail(name+"@gmail.com");
 				user.setUsername(name);
@@ -64,6 +64,7 @@ public class ServicesRecommendationBackEndApplication {
 
 			ServiceDto serviceDto = new ServiceDto();
 			serviceDto.setEmail("service@gmail.com");
+			serviceDto.setDescription("this is a new service or trade person");
 			serviceDto.setTitle("title 1");
 			serviceDto.setPhoneNumber("0766131555");
 			serviceDto.setLocation("kenitra");

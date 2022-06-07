@@ -11,5 +11,6 @@ public abstract class ServiceTradesPersonDto {
     private String title;
     private String email;
     private String phoneNumber;
+    private String description;
     private List<RecommendationDto> recommendations;
 }
