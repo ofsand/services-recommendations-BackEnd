@@ -57,7 +57,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDto addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.getPassword());
+        if(user.getPassword()!=null) {
+
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return recommendationMapper.toUserDto(userRepository.save(user));
     }
 

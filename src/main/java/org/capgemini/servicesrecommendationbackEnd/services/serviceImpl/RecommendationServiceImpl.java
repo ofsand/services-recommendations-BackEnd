@@ -43,9 +43,18 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
+    public List<RecommendationDto> getDisapprovedRecommendations() {
+        return recommendationRepository.findAll()
+                .stream()
+                .filter(recommendation -> !recommendation.isApproved())
+                .map(recommendationMapper::toRecommendationDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<RecommendationDto> getRecommendationsByServiceTradesperson(Long serviceTradespersonId) {
         // Delegate the process to the repository layer
-        List<Recommendation> recommendations = recommendationRepository.getRecommendationsByServiceTradesperson(serviceTradespersonId);
+        List<Recommendation> recommendations = recommendationRepository.getAllRecByServiceTradesperson(serviceTradespersonId);
 
         return recommendations.stream()
                 .map(recommendationMapper::toRecommendationDto)
