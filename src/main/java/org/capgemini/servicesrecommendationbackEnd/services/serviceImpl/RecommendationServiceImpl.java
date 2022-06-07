@@ -1,4 +1,4 @@
-package org.capgemini.servicesrecommendationbackEnd.business;
+package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
