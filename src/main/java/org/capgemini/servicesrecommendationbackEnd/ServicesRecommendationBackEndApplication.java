@@ -61,6 +61,7 @@ public class ServicesRecommendationBackEndApplication {
 					}).collect(Collectors.toList());
 
 			//Save Service
+
 			ServiceDto serviceDto = new ServiceDto();
 			serviceDto.setEmail("service@gmail.com");
 			serviceDto.setTitle("title 1");
@@ -79,6 +80,7 @@ public class ServicesRecommendationBackEndApplication {
 			tradesPerson.setAddress("23 Kenitra");
 			tradesPerson.setSpeciality("Medecin");
 			serviceTradesPersonBusiness.addTradesPerson(tradesPerson, 2L);
+
 		};
 	}
 
