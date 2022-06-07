@@ -41,7 +41,7 @@ public class ServicesRecommendationBackEndApplication {
 			});
 
 			//Save Users
-			Stream.of("zakaria", "aymane").forEach(name -> {
+			Stream.of("admin", "aymane").forEach(name -> {
 				User user = new User();
 				user.setEmail(name+"@gmail.com");
 				user.setUsername(name);
