@@ -1,6 +1,9 @@
 package org.capgemini.servicesrecommendationbackEnd.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
+import org.capgemini.servicesrecommendationbackEnd.exceptions.BusinessException;
+import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessage;
+import org.capgemini.servicesrecommendationbackEnd.exceptions.ErrorsMessageException;
 import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.services.service.CategoryService;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
@@ -30,8 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto getCategory(Long id) {
-        Category category = categoryRepository.findById(id).orElse(null);
-        //        .orElseThrow(() -> new BusinessException(ErrorsMessageException.NOT_FOUND_USER))
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new BusinessException(ErrorsMessage.NOT_FOUND_CATEGORY));
         return recommendationMapper.toCategoryDto(category);
     }
 

@@ -5,6 +5,7 @@ import org.capgemini.servicesrecommendationbackEnd.mapper.RecommendationMapper;
 import org.capgemini.servicesrecommendationbackEnd.models.dto.CategoryDto;
 import org.capgemini.servicesrecommendationbackEnd.models.entities.Category;
 import org.capgemini.servicesrecommendationbackEnd.repositories.CategoryRepository;
+import org.capgemini.servicesrecommendationbackEnd.services.serviceImpl.CategoryServiceImpl;
 import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -61,17 +63,16 @@ class CategoryServiceTest {
         // Then
         assertEquals(1, categoryService.getAllCategories().size());
     }
-
     @Test
-    @DisplayName("Test for get one category")
-    public void testGetCategory(){
+    @DisplayName("Test exception for get one category")
+    public void testGetCategoryException() {
         // given
         generator = new EasyRandom();
         CategoryDto categoryDto = generator.nextObject(CategoryDto.class);
         Category category = mapper.toCategory(categoryDto);
 
         // When
-        Mockito.lenient().when(categoryRepository.getById(categoryDto.getIdCategory())).thenReturn(category);
+        Mockito.lenient().when(categoryRepository.findById(123L)).thenReturn(Optional.of(category));
         Mockito.lenient().when(mapper.toCategoryDto(category)).thenReturn(categoryDto);
         Mockito.lenient().when(mapper.toCategory(categoryDto)).thenReturn(category);
 
@@ -83,6 +84,26 @@ class CategoryServiceTest {
         String expectedMessage = "category not found";
         String cureentMessage = exception.getErrorsMessage().getMessage();
         assertEquals(expectedMessage,cureentMessage);
+
+
+    }
+
+    @Test
+    @DisplayName("Test for get one category")
+    public void testGetCategory(){
+        // given
+        generator = new EasyRandom();
+        CategoryDto categoryDto = generator.nextObject(CategoryDto.class);
+        Category category = mapper.toCategory(categoryDto);
+
+        // When
+        Mockito.lenient().when(categoryRepository.findById(categoryDto.getIdCategory())).thenReturn(Optional.of(category));
+        Mockito.lenient().when(mapper.toCategoryDto(category)).thenReturn(categoryDto);
+        Mockito.lenient().when(mapper.toCategory(categoryDto)).thenReturn(category);
+
+        //Then
+        CategoryDto excpectedCategory = categoryService.getCategory(categoryDto.getIdCategory());
+        assertEquals(excpectedCategory,categoryDto);
     }
 
     @Test
@@ -93,7 +114,7 @@ class CategoryServiceTest {
         Category category = mapper.toCategory(categoryDto);
 
         //When
-        Mockito.lenient().when(categoryRepository.save(Mockito.any())).thenReturn(Mockito.any());
+        Mockito.lenient().when(categoryRepository.save(category)).thenReturn(category);
         Mockito.lenient().when(mapper.toCategoryDto(category)).thenReturn(categoryDto);
         Mockito.lenient().when(mapper.toCategory(categoryDto)).thenReturn(category);
         CategoryDto categoryFind = categoryService.addCategory(categoryDto);
@@ -102,7 +123,6 @@ class CategoryServiceTest {
         verify(categoryRepository,times(1)).save(Mockito.any()) ;
         assertNotNull(categoryFind);
         assertEquals(categoryDto,categoryFind);
-
     }
 
 }
