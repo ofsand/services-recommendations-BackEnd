@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 public enum ErrorsMessage {
     NOT_FOUND_USER("user not found",
             HttpStatus.NOT_FOUND),
+    NOT_FOUND_CATEGORY("category not found",
+            HttpStatus.NOT_FOUND),
     NOT_FOUND_ID("Id not found",
             HttpStatus.NOT_FOUND),
     ARGUMENT_NOT_VALID("argument not valid",
