@@ -52,7 +52,17 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    public List<RecommendationDto> getRecommendationsByServiceTradesperson(Long serviceTradespersonId) {
+    public List<RecommendationDto> getAllRecByServiceTradesperson(Long serviceTradespersonId) {
+        // Delegate the process to the repository layer and getting all recommendations
+        List<Recommendation> recommendations = recommendationRepository.getAllRecByServiceTradesperson(serviceTradespersonId);
+
+        return recommendations.stream()
+                .map(recommendationMapper::toRecommendationDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RecommendationDto> getApprovedRecByServiceTradesperson(Long serviceTradespersonId) {
         // Delegate the process to the repository layer and getting all approved recommendations
         List<Recommendation> recommendations = recommendationRepository.getApprovedRecByServiceTradesperson(serviceTradespersonId);
 
@@ -60,6 +70,7 @@ public class RecommendationServiceImpl implements RecommendationService {
                 .map(recommendationMapper::toRecommendationDto)
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public RecommendationDto addRecommendationToServiceTradesperson(Long ServiceTradespersonId, RecommendationDto recommendationDto) {
@@ -82,4 +93,28 @@ public class RecommendationServiceImpl implements RecommendationService {
 
         return recommendationMapper.toRecommendationDto(savedRecommendation);
     }
+
+    public RecommendationDto getOneRecByServiceTradesperson(Long serviceTradespersonId, Long recommendationId) {
+        // Delegate the process to the repository layer and getting one recommendation belonging to a defined service
+        Recommendation recommendation = recommendationRepository.getOneRecByServiceTradesperson(serviceTradespersonId, recommendationId)
+                .stream()
+                .findFirst()
+                .get();
+        return recommendationMapper.toRecommendationDto(recommendation);
+    }
+
+
+    public RecommendationDto approveRecommendation(Long recommendationId) {
+        Recommendation recommendation = recommendationRepository.getById(recommendationId);
+        recommendation.setApproved(true);
+        return recommendationMapper.toRecommendationDto(recommendationRepository.save(recommendation));
+    }
+
+
+    public RecommendationDto declineRecommendation(Long recommendationId) {
+        Recommendation recommendation = recommendationRepository.getById(recommendationId);
+        recommendation.setApproved(false);
+        return recommendationMapper.toRecommendationDto(recommendationRepository.save(recommendation));
+    }
+
 }

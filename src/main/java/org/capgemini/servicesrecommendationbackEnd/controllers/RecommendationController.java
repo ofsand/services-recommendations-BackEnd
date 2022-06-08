@@ -34,7 +34,7 @@ public class RecommendationController {
 
     @RequestMapping(value = "/services-tradesPerson/{servicesTradesPersonId}/recommendations", method = RequestMethod.GET)
     public List<RecommendationDto> getRecommendationsByServiceTradesperson(@PathVariable Long servicesTradesPersonId) {
-        return recommendationService.getRecommendationsByServiceTradesperson(servicesTradesPersonId);
+        return recommendationService.getApprovedRecByServiceTradesperson(servicesTradesPersonId);
     }
 
     @RequestMapping(value = "/services-tradesPerson/{servicesTradesPersonId}", method = RequestMethod.POST)
@@ -42,5 +42,20 @@ public class RecommendationController {
                                                                     @RequestBody RecommendationDto recommendationDto) {
         return recommendationService.addRecommendationToServiceTradesperson(servicesTradesPersonId, recommendationDto);
     }
+
+    @RequestMapping(value = "recommendations/{recommendationId}/approve", method = RequestMethod.PUT)
+    public RecommendationDto approveRecommendation(
+            @PathVariable Long recommendationId
+    ) {
+        return recommendationService.approveRecommendation(recommendationId);
+    }
+
+    @RequestMapping(value = "recommendations/{recommendationId}/decline", method = RequestMethod.PUT)
+    public RecommendationDto declineRecommendation(
+            @PathVariable Long recommendationId
+    ) {
+        return recommendationService.declineRecommendation(recommendationId);
+    }
+
 
 }

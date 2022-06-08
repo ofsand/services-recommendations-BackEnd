@@ -6,8 +6,6 @@ import org.capgemini.servicesrecommendationbackEnd.models.entities.User;
 import java.util.List;
 
 public interface AdminService {
-    void approveRecommendation(Long recommendationId);
-    void declineRecommendation(Long recommendationId);
     List<UserDto> getAll();
     UserDto add(User user);
 }
