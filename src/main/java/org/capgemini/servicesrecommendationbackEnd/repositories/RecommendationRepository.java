@@ -20,6 +20,10 @@ public interface RecommendationRepository extends JpaRepository<Recommendation, 
     public List<Recommendation> getDisapprovedRecByServiceTradesperson(@Param("serviceTradespersonId") Long serviceTradespersonId);
 
 
+    @Query("select r from Recommendation r where r.serviceTradesPerson.id = :serviceTradespersonId and r.idRecommendation = :recommendationId")
+    public List<Recommendation> getOneRecByServiceTradesperson(@Param("serviceTradespersonId") Long serviceTradespersonId, @Param("recommendationId") Long recommendationId);
+
+
     /*
     @Query("select r from Recommendation r where r.tradesperson.id = :tradespersonId and isApproved = true")
     public List<Recommendation> getRecommendationsByTradesperson(@Param("tradespersonId") Long tradespersonId);

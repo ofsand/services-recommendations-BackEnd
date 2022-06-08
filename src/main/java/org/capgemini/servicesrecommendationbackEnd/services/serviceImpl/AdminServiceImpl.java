@@ -17,21 +17,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
-    private final RecommendationRepository recommendationRepository;
     private final UserRepository userRepository;
     private final RecommendationMapper recommendationMapper;
 
-    public void approveRecommendation(Long recommendationId) {
-        Recommendation recommendation = recommendationRepository.getById(recommendationId);
-        recommendation.setApproved(true);
-        recommendationRepository.save(recommendation);
-    }
-
-    public void declineRecommendation(Long recommendationId) {
-        Recommendation recommendation = recommendationRepository.getById(recommendationId);
-        recommendation.setApproved(false);
-        recommendationRepository.save(recommendation);
-    }
 
     @Override
     public List<UserDto> getAll() {

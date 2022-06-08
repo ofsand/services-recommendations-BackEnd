@@ -11,6 +11,13 @@ public interface RecommendationService {
 
     List<RecommendationDto> getDisapprovedRecommendations();
 
-    List<RecommendationDto> getRecommendationsByServiceTradesperson(Long ServiceTradespersonId);
+    List<RecommendationDto> getAllRecByServiceTradesperson(Long serviceTradespersonId);
+
+    List<RecommendationDto> getApprovedRecByServiceTradesperson(Long ServiceTradespersonId);
+
+    RecommendationDto getOneRecByServiceTradesperson(Long serviceTradespersonId, Long recommendationId);
     RecommendationDto addRecommendationToServiceTradesperson(Long ServiceTradespersonId, RecommendationDto recommendationDto);
+
+    RecommendationDto approveRecommendation(Long recommendationId);
+    RecommendationDto declineRecommendation(Long recommendationId);
 }
