@@ -21,8 +21,8 @@ public class ServiceTradesPersonController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/category/{idCategory}/services-tradesPerson")
-    public List<ServiceTradesPersonDto> findByCategory(@PathVariable Long idCategory) {
-        return serviceTradesPersonBusiness.findByCategory(idCategory);
+    public List<ServiceTradesPersonDto> findByCategory(@PathVariable Long idCategory,@RequestParam(defaultValue = "",name = "keyword") String keyword) {
+        return serviceTradesPersonBusiness.findByCategory(idCategory,keyword);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/admin/category/{idCategory}/services")
@@ -36,12 +36,21 @@ public class ServiceTradesPersonController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/tradesPerson/{idCategory}")
-    public List<TradesPersonDto> findAllTradesPerson( @PathVariable Long idCategory) {
-        return serviceTradesPersonBusiness.getAllTradesPersons( idCategory);
+    public List<TradesPersonDto> findAllTradesPersonByCategory( @PathVariable Long idCategory,@RequestParam(defaultValue = "") String keyword) {
+        return serviceTradesPersonBusiness.getAllTradesPersonsByCategory( idCategory,keyword);
     }
     @RequestMapping(method = RequestMethod.GET, value = "/services/{idCategory}")
-    public List<ServiceDto> findAllServices(@PathVariable Long idCategory) {
-        return serviceTradesPersonBusiness.getAllServices(idCategory);
+    public List<ServiceDto> findAllServicesByCategory(@PathVariable Long idCategory,@RequestParam(defaultValue = "") String keyword ) {
+        return serviceTradesPersonBusiness.getAllServicesByCategory(idCategory,keyword);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search/tradesPerson")
+    public List<TradesPersonDto> findAllTradesPerson( @RequestParam(defaultValue = "") String keyword) {
+        return serviceTradesPersonBusiness.getAllTradesPersons( keyword);
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/search/services")
+    public List<ServiceDto> findAllServices(@RequestParam(defaultValue = "") String keyword ) {
+        return serviceTradesPersonBusiness.getAllServices(keyword);
     }
 
 

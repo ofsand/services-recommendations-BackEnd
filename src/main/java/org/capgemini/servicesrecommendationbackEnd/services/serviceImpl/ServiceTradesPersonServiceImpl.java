@@ -45,7 +45,7 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
     }
 
     @Override
-    public List<ServiceTradesPersonDto> findByCategory(Long idCategory) {
+    public List<ServiceTradesPersonDto> findByCategory(Long idCategory, String keyword) {
         Category category = recommendationMapper.toCategory(categoryBusiness.getCategory(idCategory));
         return
             serviceTradesPersonRepository
@@ -63,22 +63,40 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
     }
 
     @Override
-    public List<TradesPersonDto> getAllTradesPersons(Long idCategory) {
-        List<TradesPerson> tradesPerson=serviceTradesPersonRepository.findAllTradesPerson(idCategory);
+    public List<TradesPersonDto> getAllTradesPersonsByCategory(Long idCategory, String keyword) {
         return
                 serviceTradesPersonRepository
-                        .findAllTradesPerson(idCategory)
+                        .findAllTradesPerson(idCategory,keyword)
                         .stream()
                         .map(recommendationMapper::tradesPersonToTradesPersonDto).
                         collect(Collectors.toList());
     }
 
     @Override
-    public List<ServiceDto> getAllServices(Long idCategory) {
-        List<Service> tradesPerson=serviceTradesPersonRepository.findAllServices(idCategory);
+    public List<ServiceDto> getAllServicesByCategory(Long idCategory, String keyword) {
         return
                 serviceTradesPersonRepository
-                        .findAllServices(idCategory)
+                        .findAllServices(idCategory,keyword)
+                        .stream()
+                        .map(recommendationMapper::serviceToServiceDto).
+                        collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TradesPersonDto> getAllTradesPersons(String keyword) {
+        return
+                serviceTradesPersonRepository
+                        .findAllTradesPerson(keyword)
+                        .stream()
+                        .map(recommendationMapper::tradesPersonToTradesPersonDto).
+                        collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ServiceDto> getAllServices(String keyword) {
+        return
+                serviceTradesPersonRepository
+                        .findAllServices(keyword)
                         .stream()
                         .map(recommendationMapper::serviceToServiceDto).
                         collect(Collectors.toList());

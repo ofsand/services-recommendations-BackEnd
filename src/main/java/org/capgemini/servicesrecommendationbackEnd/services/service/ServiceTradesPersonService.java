@@ -10,10 +10,14 @@ public interface ServiceTradesPersonService {
     List<ServiceTradesPersonDto> getAllServicesTradesPersons();
     ServiceDto addService(ServiceDto serviceDto, Long idCategory);
     TradesPersonDto addTradesPerson(TradesPersonDto tradesPersonDto, Long idCategory);
-    List<ServiceTradesPersonDto> findByCategory(Long idCategory);
+    List<ServiceTradesPersonDto> findByCategory(Long idCategory, String keyword);
     ServiceTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId);
 
-    List<TradesPersonDto> getAllTradesPersons(Long idCategory);
+    List<TradesPersonDto> getAllTradesPersonsByCategory(Long idCategory, String keyword);
 
-    List<ServiceDto> getAllServices(Long idCategory);
+    List<ServiceDto> getAllServicesByCategory(Long idCategory, String keyword);
+
+    List<TradesPersonDto> getAllTradesPersons( String keyword);
+
+    List<ServiceDto> getAllServices( String keyword);
 }
