@@ -53,8 +53,8 @@ public class RecommendationServiceImpl implements RecommendationService {
 
     @Override
     public List<RecommendationDto> getRecommendationsByServiceTradesperson(Long serviceTradespersonId) {
-        // Delegate the process to the repository layer
-        List<Recommendation> recommendations = recommendationRepository.getAllRecByServiceTradesperson(serviceTradespersonId);
+        // Delegate the process to the repository layer and getting all approved recommendations
+        List<Recommendation> recommendations = recommendationRepository.getApprovedRecByServiceTradesperson(serviceTradespersonId);
 
         return recommendations.stream()
                 .map(recommendationMapper::toRecommendationDto)

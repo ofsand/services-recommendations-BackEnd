@@ -25,7 +25,7 @@ public class RecommendationController {
         return recommendationService.getRecommendation(recommendationId);
     }
 
-    @RequestMapping(value="/recommendations/not-approved", method = RequestMethod.GET)
+    @RequestMapping(value="/recommendations/approved=false", method = RequestMethod.GET)
     public List<RecommendationDto> getDisapprovedRecommendations() {
         return recommendationService.getDisapprovedRecommendations();
     }
