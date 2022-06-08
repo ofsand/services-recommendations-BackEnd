@@ -12,4 +12,8 @@ public interface ServiceTradesPersonService {
     TradesPersonDto addTradesPerson(TradesPersonDto tradesPersonDto, Long idCategory);
     List<ServiceTradesPersonDto> findByCategory(Long idCategory);
     ServiceTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId);
+
+    List<TradesPersonDto> getAllTradesPersons();
+
+    List<ServiceDto> getAllServices();
 }

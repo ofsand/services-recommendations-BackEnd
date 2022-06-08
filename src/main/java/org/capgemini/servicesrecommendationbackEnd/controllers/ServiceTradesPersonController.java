@@ -35,5 +35,15 @@ public class ServiceTradesPersonController {
         return serviceTradesPersonBusiness.addTradesPerson(tradesPersonDto, idCategory);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/tradesPerson")
+    public List<TradesPersonDto> findAllTradesPerson() {
+        return serviceTradesPersonBusiness.getAllTradesPersons();
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/services")
+    public List<ServiceDto> findAllServices() {
+        return serviceTradesPersonBusiness.getAllServices();
+    }
+
+
 
 }

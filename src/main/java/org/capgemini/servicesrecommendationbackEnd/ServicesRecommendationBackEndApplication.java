@@ -64,7 +64,7 @@ public class ServicesRecommendationBackEndApplication {
 
 			ServiceDto serviceDto = new ServiceDto();
 			serviceDto.setEmail("service@gmail.com");
-			serviceDto.setDescription("this is a new service or trade person");
+			serviceDto.setDescription("this is a service for the title one");
 			serviceDto.setTitle("title 1");
 			serviceDto.setPhoneNumber("0766131555");
 			serviceDto.setLocation("kenitra");
@@ -75,6 +75,7 @@ public class ServicesRecommendationBackEndApplication {
 			tradesPerson.setEmail("service@gmail.com");
 			tradesPerson.setTitle("title 1");
 			tradesPerson.setPhoneNumber("0766131555");
+			serviceDto.setDescription("this is a trade person for the title one");
 			tradesPerson.setFirstName("zakaria");
 			tradesPerson.setLastName("chadli");
 			tradesPerson.setDomain("Medical");
