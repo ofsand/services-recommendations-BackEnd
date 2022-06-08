@@ -13,7 +13,7 @@ public interface ServiceTradesPersonService {
     List<ServiceTradesPersonDto> findByCategory(Long idCategory);
     ServiceTradesPersonDto findServiceTradesPersonById(Long serviceTradesPersonId);
 
-    List<TradesPersonDto> getAllTradesPersons();
+    List<TradesPersonDto> getAllTradesPersons(Long idCategory);
 
-    List<ServiceDto> getAllServices();
+    List<ServiceDto> getAllServices(Long idCategory);
 }

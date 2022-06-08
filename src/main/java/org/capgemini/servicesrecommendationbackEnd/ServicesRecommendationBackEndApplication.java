@@ -64,8 +64,8 @@ public class ServicesRecommendationBackEndApplication {
 
 			ServiceDto serviceDto = new ServiceDto();
 			serviceDto.setEmail("service@gmail.com");
-			serviceDto.setDescription("this is a service for the title one");
-			serviceDto.setTitle("title 1");
+			serviceDto.setDescription("this is a medical service  for the title one");
+			serviceDto.setTitle("hospital");
 			serviceDto.setPhoneNumber("0766131555");
 			serviceDto.setLocation("kenitra");
 			serviceTradesPersonBusiness.addService(serviceDto, 1L);
@@ -73,15 +73,17 @@ public class ServicesRecommendationBackEndApplication {
 			//Save Trades Person
 			TradesPersonDto tradesPerson = new TradesPersonDto();
 			tradesPerson.setEmail("service@gmail.com");
-			tradesPerson.setTitle("title 1");
+			tradesPerson.setTitle("Plumber");
 			tradesPerson.setPhoneNumber("0766131555");
-			serviceDto.setDescription("this is a trade person for the title one");
+			tradesPerson.setDescription("this is a trade person Plumber for the title one");
 			tradesPerson.setFirstName("zakaria");
 			tradesPerson.setLastName("chadli");
-			tradesPerson.setDomain("Medical");
+			tradesPerson.setDomain("Plumber");
 			tradesPerson.setAddress("23 Kenitra");
-			tradesPerson.setSpeciality("Medecin");
+			tradesPerson.setSpeciality("Plumber");
 			serviceTradesPersonBusiness.addTradesPerson(tradesPerson, 2L);
+
+
 
 		};
 	}

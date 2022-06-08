@@ -63,22 +63,22 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
     }
 
     @Override
-    public List<TradesPersonDto> getAllTradesPersons() {
-        List<TradesPerson> tradesPerson=serviceTradesPersonRepository.findAllTradesPerson();
+    public List<TradesPersonDto> getAllTradesPersons(Long idCategory) {
+        List<TradesPerson> tradesPerson=serviceTradesPersonRepository.findAllTradesPerson(idCategory);
         return
                 serviceTradesPersonRepository
-                        .findAllTradesPerson()
+                        .findAllTradesPerson(idCategory)
                         .stream()
                         .map(recommendationMapper::tradesPersonToTradesPersonDto).
                         collect(Collectors.toList());
     }
 
     @Override
-    public List<ServiceDto> getAllServices() {
-        List<Service> tradesPerson=serviceTradesPersonRepository.findAllServices();
+    public List<ServiceDto> getAllServices(Long idCategory) {
+        List<Service> tradesPerson=serviceTradesPersonRepository.findAllServices(idCategory);
         return
                 serviceTradesPersonRepository
-                        .findAllServices()
+                        .findAllServices(idCategory)
                         .stream()
                         .map(recommendationMapper::serviceToServiceDto).
                         collect(Collectors.toList());
