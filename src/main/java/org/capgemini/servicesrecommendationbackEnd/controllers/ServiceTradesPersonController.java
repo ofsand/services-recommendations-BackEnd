@@ -53,6 +53,11 @@ public class ServiceTradesPersonController {
         return serviceTradesPersonBusiness.getAllServices(keyword);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/admin/services-tradesPerson/{idServiceTradePerson}")
+    public void deleteServiceTradePerson(@PathVariable Long idServiceTradePerson){
+        serviceTradesPersonBusiness.deleteServiceTradePerson(idServiceTradePerson);
+    }
+
 
 
 }

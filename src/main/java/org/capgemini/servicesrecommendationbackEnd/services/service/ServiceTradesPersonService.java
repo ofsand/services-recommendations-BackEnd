@@ -21,4 +21,6 @@ public interface ServiceTradesPersonService {
     List<TradesPersonDto> getAllTradesPersons( String keyword);
 
     List<ServiceDto> getAllServices( String keyword);
+
+    void deleteServiceTradePerson(Long idServiceTradesPerson);
 }

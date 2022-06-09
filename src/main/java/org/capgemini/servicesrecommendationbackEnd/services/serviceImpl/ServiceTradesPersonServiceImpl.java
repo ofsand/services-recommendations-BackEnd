@@ -108,6 +108,11 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
     }
 
     @Override
+    public void deleteServiceTradePerson(Long idServiceTradesPerson) {
+        serviceTradesPersonRepository.deleteById(idServiceTradesPerson);
+    }
+
+    @Override
     public List<ServiceTradesPersonDto> getAllServicesTradesPersons(String keyword) {
         return serviceTradesPersonRepository
                 .findAllByKeyword(keyword)
