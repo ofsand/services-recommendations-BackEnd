@@ -14,6 +14,7 @@ import org.capgemini.servicesrecommendationbackEnd.services.service.ServiceTrade
 
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
@@ -50,8 +51,12 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
         return
             serviceTradesPersonRepository
                 .findByCategory(category)
-                .stream()
+                .stream().filter(
+                        serviceTradesPerson ->
+                                serviceTradesPerson.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
+                            serviceTradesPerson.getDescription().toLowerCase().contains(keyword.toLowerCase()))
                 .map(recommendationMapper::toServiceTradesPersonDto).collect(Collectors.toList());
+
     }
 
     @Override
@@ -103,9 +108,9 @@ public class ServiceTradesPersonServiceImpl implements ServiceTradesPersonServic
     }
 
     @Override
-    public List<ServiceTradesPersonDto> getAllServicesTradesPersons() {
+    public List<ServiceTradesPersonDto> getAllServicesTradesPersons(String keyword) {
         return serviceTradesPersonRepository
-                .findAll()
+                .findAllByKeyword(keyword)
                 .stream()
                 .map(recommendationMapper::toServiceTradesPersonDto).collect(Collectors.toList());
     }

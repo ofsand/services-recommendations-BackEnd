@@ -16,8 +16,8 @@ public class ServiceTradesPersonController {
     private final ServiceTradesPersonService serviceTradesPersonBusiness;
 
     @RequestMapping(method = RequestMethod.GET, value = "/services-tradesPerson")
-    public List<ServiceTradesPersonDto> findAll() {
-        return serviceTradesPersonBusiness.getAllServicesTradesPersons();
+    public List<ServiceTradesPersonDto> findAll(@RequestParam(defaultValue = "",name = "keyword" )String keyword) {
+        return serviceTradesPersonBusiness.getAllServicesTradesPersons(keyword);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/category/{idCategory}/services-tradesPerson")

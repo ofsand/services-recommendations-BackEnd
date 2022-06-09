@@ -7,7 +7,8 @@ import org.capgemini.servicesrecommendationbackEnd.models.dto.TradesPersonDto;
 import java.util.List;
 
 public interface ServiceTradesPersonService {
-    List<ServiceTradesPersonDto> getAllServicesTradesPersons();
+
+    List<ServiceTradesPersonDto> getAllServicesTradesPersons(String keyword);
     ServiceDto addService(ServiceDto serviceDto, Long idCategory);
     TradesPersonDto addTradesPerson(TradesPersonDto tradesPersonDto, Long idCategory);
     List<ServiceTradesPersonDto> findByCategory(Long idCategory, String keyword);
