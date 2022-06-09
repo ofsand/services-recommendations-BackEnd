@@ -3,6 +3,9 @@ package org.capgemini.servicesrecommendationbackEnd.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -32,12 +35,16 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,HttpServletResponse response) throws AuthenticationException
     {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        log.info("Username is : {}",username);
-        log.info("Username is : {}",password);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username,password);
-        return authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        try {
+            UserLogin user = new ObjectMapper().readValue(request.getInputStream(), UserLogin.class);
+            log.info("Username is : {}", user.getUsername());
+            log.info("Password is : {}", user.getPassword());
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
+            return authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -61,4 +68,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), data);
     }
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class UserLogin {
+    private String username;
+    private String password;
 }
