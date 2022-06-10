@@ -58,6 +58,18 @@ public class ServiceTradesPersonController {
         serviceTradesPersonBusiness.deleteServiceTradePerson(idServiceTradePerson);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/service-details/{idServiceTradePerson}")
+    public ServiceDto findServiceById(@PathVariable Long idServiceTradePerson){
+        return serviceTradesPersonBusiness.findServiceById(idServiceTradePerson);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/tradeperson-details/{idServiceTradePerson}")
+    public TradesPersonDto findTradePersonById(@PathVariable Long idServiceTradePerson){
+        return serviceTradesPersonBusiness.findTradePersonById(idServiceTradePerson);
+    }
+
+
+
 
 
 }
