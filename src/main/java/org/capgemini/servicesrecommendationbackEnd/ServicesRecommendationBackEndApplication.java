@@ -52,41 +52,37 @@ public class ServicesRecommendationBackEndApplication {
 
 			userBusiness.addRoleToUser(1L, 1L);
 
+
 			//Save Categories
 			List<CategoryDto> categories =
-					Stream.of("Medical", "Painter", "Plumber").map(name -> {
+					Stream.of("Médecine", "Peinture").map(name -> {
 						CategoryDto category = new CategoryDto();
 						category.setName(name);
 						return categoryBusiness.addCategory(category);
 					}).collect(Collectors.toList());
 
-			//Save Service
-
+			// Service 1
 			ServiceDto serviceDto = new ServiceDto();
-			serviceDto.setEmail("service@gmail.com");
-			serviceDto.setDescription("this is a medical service  for the title one");
-			serviceDto.setTitle("hospital");
+			serviceDto.setTitle("Polyclinique Internationale de Rabat");
+			serviceDto.setEmail("polyclinique-rabat@gmail.com");
+			serviceDto.setDescription("La Polyclinique Internationale de Rabat est une structure hospitalière " +
+					"privée, implantée depuis 1996 au cœur de la Capitale du Royaume du Maroc.");
 			serviceDto.setPhoneNumber("0766131555");
-			serviceDto.setLocation("kenitra");
+			serviceDto.setLocation("Rabat, à côte du Mausolée Mohammed V، 8 Rue de Tunis");
 			serviceTradesPersonBusiness.addService(serviceDto, 1L);
 
-
-
-			//Save Trades Person
-			TradesPersonDto tradesPerson = new TradesPersonDto();
-			tradesPerson.setEmail("service@gmail.com");
-			tradesPerson.setTitle("Plumber");
-			tradesPerson.setPhoneNumber("0766131555");
-			tradesPerson.setDescription("this is a trade person Plumber for the title one");
-			tradesPerson.setFirstName("zakaria");
-			tradesPerson.setLastName("chadli");
-			tradesPerson.setDomain("Plumber");
-			tradesPerson.setAddress("23 Kenitra");
-			tradesPerson.setSpeciality("Plumber");
-			serviceTradesPersonBusiness.addTradesPerson(tradesPerson, 2L);
-
-
-
+			//Save Trades Person 3
+			TradesPersonDto tradesPerson3 = new TradesPersonDto();
+			tradesPerson3.setTitle("Peintre, Hassan");
+			tradesPerson3.setEmail("hassan.peintre@gmail.com");
+			tradesPerson3.setPhoneNumber("0766131555");
+			tradesPerson3.setDescription("Peintre qui a 12 années d'expérience dans le domaine de la peinture");
+			tradesPerson3.setFirstName("Hassan");
+			tradesPerson3.setLastName("Alaoui");
+			tradesPerson3.setDomain("Peintre");
+			tradesPerson3.setAddress("Sect 4E N°28 Rue El Hira Tabriquet, Salé 11000");
+			tradesPerson3.setSpeciality("Peintre de maisons");
+			serviceTradesPersonBusiness.addTradesPerson(tradesPerson3, 2L);
 		};
 	}
 

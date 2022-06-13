@@ -25,7 +25,7 @@ public class RecommendationController {
         return recommendationService.getRecommendation(recommendationId);
     }
 
-    @RequestMapping(value="/recommendations/approved=false", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/recommendations/approved=false", method = RequestMethod.GET)
     public List<RecommendationDto> getDisapprovedRecommendations() {
         return recommendationService.getDisapprovedRecommendations();
     }
@@ -43,14 +43,14 @@ public class RecommendationController {
         return recommendationService.addRecommendationToServiceTradesperson(servicesTradesPersonId, recommendationDto);
     }
 
-    @RequestMapping(value = "recommendations/{recommendationId}/approve", method = RequestMethod.PUT)
+    @RequestMapping(value = "/admin/recommendations/{recommendationId}/approve", method = RequestMethod.PUT)
     public RecommendationDto approveRecommendation(
             @PathVariable Long recommendationId
     ) {
         return recommendationService.approveRecommendation(recommendationId);
     }
 
-    @RequestMapping(value = "recommendations/{recommendationId}/decline", method = RequestMethod.PUT)
+    @RequestMapping(value = "/admin/recommendations/{recommendationId}/decline", method = RequestMethod.PUT)
     public RecommendationDto declineRecommendation(
             @PathVariable Long recommendationId
     ) {
